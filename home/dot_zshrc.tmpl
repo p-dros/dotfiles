@@ -1,0 +1,21 @@
+export ZSH="$HOME/.config/oh-my-zsh"
+
+ZSH_THEME=""
+
+# OMZ Plugins
+plugins=(git mise zsh-autosuggestions zsh-syntax-highlighting zsh-autocomplete)
+source $ZSH/oh-my-zsh.sh
+
+# Configure zsh-autocomplete plugin
+# Make Tab and ShiftTab go to the menu
+bindkey              '^I' menu-select
+bindkey "$terminfo[kcbt]" menu-select
+# Make Tab and ShiftTab change the selection in the menu
+bindkey -M menuselect              '^I'         menu-complete
+bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
+
+# Aliases
+alias vim='nvim'
+
+# Starship
+eval "$(starship init zsh)"

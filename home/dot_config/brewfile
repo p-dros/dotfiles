@@ -1,0 +1,15 @@
+brew "starship"
+brew "git"
+brew "mise"
+brew "curl"
+brew "neovim"
+brew "dockutil"
+
+cask "alt-tab"
+cask "visual-studio-code"
+cask "docker"
+cask "hyper"
+cask "font-0xproto-nerd-font"
+cask "raycast"
+
+# mas "Hidden Bar"
