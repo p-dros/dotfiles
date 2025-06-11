@@ -15,21 +15,34 @@ CASKS=(
 	raycast
 	docker
 	font-0xproto-nerd-font
-	raycast
 	tabby
-	hiddenbar
 )
 
 printf '\nInitiating Homebrew update...\n'
 brew update
 
-printf '\nInstalling packages...\n'
-brew install ${PACKAGES[@]}
+printf '\nInstalling or upgrading packages...\n'
+for pkg in "${PACKAGES[@]}"; do
+	if brew list --formula "$pkg" &>/dev/null; then
+		echo "Upgrading $pkg..."
+		brew upgrade "$pkg"
+	else
+		echo "Installing $pkg..."
+		brew install "$pkg"
+	fi
+done
+
+printf '\n\nInstalling or upgrading cask apps...\n'
+for cask in "${CASKS[@]}"; do
+	if brew list --cask "$cask" &>/dev/null; then
+		echo "Upgrading $cask..."
+		brew upgrade --cask "$cask"
+	else
+		echo "Installing $cask..."
+		brew install --cask "$cask"
+	fi
+done
 
 printf '\n\nRemoving out of date packages...\n'
 brew cleanup
-
-printf '\n\nInstalling cask apps...\n'
-brew install --cask --force ${CASKS[@]}
-
 {{ end -}}
