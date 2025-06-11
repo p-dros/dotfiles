@@ -5,7 +5,7 @@ vim.opt.relativenumber = true
 vim.o.showmode = false
 
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+    vim.opt.clipboard = 'unnamedplus'
 end)
 
 vim.o.breakindent = true
