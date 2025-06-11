@@ -30,6 +30,6 @@ printf '\n\nRemoving out of date packages...\n'
 brew cleanup
 
 printf '\n\nInstalling cask apps...\n'
-brew install --cask ${CASKS[@]}
+brew install --cask --force ${CASKS[@]}
 
 {{ end -}}
