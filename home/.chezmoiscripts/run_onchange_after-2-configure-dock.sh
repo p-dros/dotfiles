@@ -1,5 +1,6 @@
 #!/bin/bash
 
+{{- if eq .chezmoi.os "darwin" -}}
 set -eufo pipefail
 
 trap 'killall Dock' EXIT
@@ -28,3 +29,5 @@ declare -a remove_labels=(
 for label in "${remove_labels[@]}"; do
 	dockutil --no-restart --remove "${label}" || true
 done
+
+{{ end -}}
