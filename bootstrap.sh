@@ -13,7 +13,7 @@ fi
 
 # Bootstrap with Chezmoi
 if ! [ -d ~/.local/share/chezmoi/ ]; then
-  chezmoi init --apply --verbose https://github.com/p-dros/dotfiles.git
+  chezmoi init --apply --ssh --verbose https://github.com/p-dros/dotfiles.git
 else
   chezmoi git pull
   chezmoi init --apply
