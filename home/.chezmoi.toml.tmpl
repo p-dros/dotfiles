@@ -1,7 +1,12 @@
-{{- $email := promptStringOnce . "email" "Enter email address" -}}
+{{- $isWork := promptBoolOnce . "isWork" "Is it a work laptop?" -}}
+{{- $email := "piotr.dros01@gmail.com" -}}
+{{- if $isWork -}}
+{{-   $email = "pdros@atlassian.com" -}}
+{{- end -}}
 
 [data]
 	email = {{ $email | quote }}
+	isWork = {{ $isWork }}
 [edit]
 	command = "nvim"
 [git]
