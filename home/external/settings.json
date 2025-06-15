@@ -1,8 +1,8 @@
 {
   "workbench.sideBar.location": "right",
-  "workbench.colorTheme": "Atom One Dark",
+  "workbench.colorTheme": "Catppuccin Macchiato",
   "editor.fontFamily": "'0xProto Nerd Font Mono', 'Geist Mono' ,Menlo, Monaco, 'Courier New', monospace",
-  "workbench.iconTheme": "catppuccin-mocha",
+  "workbench.iconTheme": "catppuccin-macchiato",
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "biomejs.biome",
   "editor.accessibilitySupport": "off",
@@ -17,5 +17,6 @@
   "[lua]": {
     "editor.defaultFormatter": "yinfei.luahelper"
   },
-  "biome.suggestInstallingGlobally": false
+  "biome.suggestInstallingGlobally": false,
+  "explorer.confirmDragAndDrop": false
 }
