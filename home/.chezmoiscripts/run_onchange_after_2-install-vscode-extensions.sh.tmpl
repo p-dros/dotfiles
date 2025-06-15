@@ -1,0 +1,23 @@
+#!/bin/bash
+
+EXTENSIONS=(
+    akamud.vscode-theme-onedark
+    astro-build.astro-vscode
+    biomejs.biome
+    eamodio.gitlens
+    ms-azuretools.vscode-containers
+    ms-azuretools.vscode-docker
+    ms-python.debugpy
+    ms-python.python
+    ms-python.vscode-pylance
+    tamasfe.even-better-toml
+    vscodevim.vim
+    yinfei.luahelper
+    yoavbls.pretty-ts-errors
+)
+
+echo "Installing VS Code extensions..."
+
+for ext in "${EXTENSIONS[@]}"; do
+    code --install-extension "$ext"
+done
