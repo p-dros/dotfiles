@@ -1,0 +1,21 @@
+{
+  "workbench.sideBar.location": "right",
+  "workbench.colorTheme": "Atom One Dark",
+  "editor.fontFamily": "'0xProto Nerd Font Mono', 'Geist Mono' ,Menlo, Monaco, 'Courier New', monospace",
+  "workbench.iconTheme": "catppuccin-mocha",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.accessibilitySupport": "off",
+  "terminal.integrated.fontSize": 14,
+  "editor.lineNumbers": "relative",
+  "vim.useSystemClipboard": true,
+  "explorer.confirmDelete": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "search.exclude": {
+    "**/dist": true
+  },
+  "[lua]": {
+    "editor.defaultFormatter": "yinfei.luahelper"
+  },
+  "biome.suggestInstallingGlobally": false
+}
