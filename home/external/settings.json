@@ -1,22 +1,32 @@
 {
+  "security.workspace.trust.enabled": true,
+  // UI
   "workbench.sideBar.location": "right",
-  "workbench.colorTheme": "Catppuccin Macchiato",
-  "editor.fontFamily": "'0xProto Nerd Font Mono', 'Geist Mono' ,Menlo, Monaco, 'Courier New', monospace",
-  "workbench.iconTheme": "catppuccin-macchiato",
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.iconTheme": "catppuccin-mocha",
+  // Editor
+  "editor.fontFamily": "'0xProto Nerd Font Mono', 'Geist Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.lineNumbers": "relative",
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "biomejs.biome",
   "editor.accessibilitySupport": "off",
+  // Terminal
   "terminal.integrated.fontSize": 14,
-  "editor.lineNumbers": "relative",
-  "vim.useSystemClipboard": true,
+  // Explorer
   "explorer.confirmDelete": false,
-  "typescript.updateImportsOnFileMove.enabled": "always",
+  "explorer.confirmDragAndDrop": false,
+  // Search
   "search.exclude": {
     "**/dist": true
   },
-  "[lua]": {
-    "editor.defaultFormatter": "yinfei.luahelper"
-  },
-  "biome.suggestInstallingGlobally": false,
-  "explorer.confirmDragAndDrop": false
+  // vim
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.leader": "<space>",
+  "vim.smartRelativeLine": true,
+  // Window
+  "window.nativeTabs": true
 }
