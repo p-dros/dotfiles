@@ -21,4 +21,5 @@ echo "Installing VS Code extensions..."
 
 for ext in "${EXTENSIONS[@]}"; do
     code --install-extension "$ext"
+    cursor --install-extension "$ext"
 done
