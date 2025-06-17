@@ -28,5 +28,6 @@
   "vim.leader": "<space>",
   "vim.smartRelativeLine": true,
   // Window
-  "window.nativeTabs": true
+  "window.nativeTabs": true,
+  "security.promptForLocalFileProtocolHandling": false
 }

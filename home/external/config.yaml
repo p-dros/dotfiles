@@ -84,9 +84,9 @@ hotkeys:
   rename-tab:
     - ⌘-R
   next-tab:
-    - Ctrl-Tab
+    - ⌘-Shift-]
   previous-tab:
-    - Ctrl-Shift-Tab
+    - ⌘-Shift-[
   move-tab-left:
     - ⌘-Shift-Left
   move-tab-right:
@@ -174,91 +174,65 @@ hotkeys:
 terminal:
   searchOptions: {}
   colorScheme:
-    name: Catppuccin Macchiato
-    foreground: '#cad3f5'
-    background: '#24273a'
-    selection: null
-    cursor: '#f4dbd6'
-    cursorAccent: null
+    name: Dracula
+    foreground: '#f8f8f2'
+    background: '#1e1f29'
+    cursor: '#bbbbbb'
     colors:
-      - '#494d64'
-      - '#ed8796'
-      - '#a6da95'
-      - '#eed49f'
-      - '#8aadf4'
-      - '#f5bde6'
-      - '#8bd5ca'
-      - '#b8c0e0'
-      - '#5b6078'
-      - '#ed8796'
-      - '#a6da95'
-      - '#eed49f'
-      - '#8aadf4'
-      - '#f5bde6'
-      - '#8bd5ca'
-      - '#a5adcb'
-  font: 0xProto Nerd Font
-  customColorSchemes:
-    - name: Catppuccin Macchiato
-      foreground: '#cad3f5'
-      background: '#24273a'
-      selection: null
-      cursor: '#f4dbd6'
-      cursorAccent: null
-      colors:
-        - '#494d64'
-        - '#ed8796'
-        - '#a6da95'
-        - '#eed49f'
-        - '#8aadf4'
-        - '#f5bde6'
-        - '#8bd5ca'
-        - '#b8c0e0'
-        - '#5b6078'
-        - '#ed8796'
-        - '#a6da95'
-        - '#eed49f'
-        - '#8aadf4'
-        - '#f5bde6'
-        - '#8bd5ca'
-        - '#a5adcb'
-    - name: Catppuccin Mocha
-      foreground: '#cdd6f4'
-      background: '#1e1e2e'
-      selection: null
-      cursor: '#f5e0dc'
-      cursorAccent: null
-      colors:
-        - '#45475a'
-        - '#f38ba8'
-        - '#a6e3a1'
-        - '#f9e2af'
-        - '#89b4fa'
-        - '#f5c2e7'
-        - '#94e2d5'
-        - '#bac2de'
-        - '#585b70'
-        - '#f38ba8'
-        - '#a6e3a1'
-        - '#f9e2af'
-        - '#89b4fa'
-        - '#f5c2e7'
-        - '#94e2d5'
-        - '#a6adc8'
+      - '#000000'
+      - '#ff5555'
+      - '#50fa7b'
+      - '#f1fa8c'
+      - '#bd93f9'
+      - '#ff79c6'
+      - '#8be9fd'
+      - '#bbbbbb'
+      - '#555555'
+      - '#ff5555'
+      - '#50fa7b'
+      - '#f1fa8c'
+      - '#bd93f9'
+      - '#ff79c6'
+      - '#8be9fd'
+      - '#ffffff'
+  lightColorScheme:
+    name: Tabby Default Light
+    foreground: '#4d4d4c'
+    background: '#ffffff'
+    cursor: '#4d4d4c'
+    colors:
+      - '#000000'
+      - '#c82829'
+      - '#718c00'
+      - '#eab700'
+      - '#4271ae'
+      - '#8959a8'
+      - '#3e999f'
+      - '#ffffff'
+      - '#000000'
+      - '#c82829'
+      - '#718c00'
+      - '#eab700'
+      - '#4271ae'
+      - '#8959a8'
+      - '#3e999f'
+      - '#ffffff'
+  customColorSchemes: []
+  font: 0xProto Nerd Font Mono
+  fontSize: 12
 ssh: {}
 clickableLinks: {}
-accessibility:
-  animations: false
+accessibility: {}
 appearance:
   colorSchemeMode: auto
 hacks: {}
 providerBlacklist: []
 commandBlacklist: []
-language: en-GB
 enableAnalytics: false
+language: en-GB
 enableWelcomeTab: false
 pluginBlacklist: []
+profileBlacklist: []
 profileDefaults:
   ssh:
     disableDynamicTitle: true
-profileBlacklist: []
