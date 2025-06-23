@@ -29,5 +29,6 @@
   "vim.smartRelativeLine": true,
   // Window
   "window.nativeTabs": true,
-  "security.promptForLocalFileProtocolHandling": false
+  "security.promptForLocalFileProtocolHandling": false,
+  "typescript.updateImportsOnFileMove.enabled": "always"
 }
