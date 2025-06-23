@@ -30,5 +30,8 @@
   // Window
   "window.nativeTabs": true,
   "security.promptForLocalFileProtocolHandling": false,
-  "typescript.updateImportsOnFileMove.enabled": "always"
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
 }
