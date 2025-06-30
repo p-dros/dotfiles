@@ -33,5 +33,6 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "files.associations": {
     "*.css": "tailwindcss"
-  }
+  },
+  "terminal.integrated.scrollback": 15000
 }
