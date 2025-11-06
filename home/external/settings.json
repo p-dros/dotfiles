@@ -9,8 +9,13 @@
   "editor.lineNumbers": "relative",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.accessibilitySupport": "off",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.removeUnusedImports": "always"
+  },
   // Terminal
   "terminal.integrated.fontSize": 14,
+  "terminal.integrated.scrollback": 15000,
   // Explorer
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
@@ -33,24 +38,8 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "terminal.integrated.scrollback": 15000,
-  "[java]": {
-    "editor.defaultFormatter": "redhat.java"
-  },
-  "gitlens.views.scm.grouped.views": {
-    "commits": true,
-    "branches": true,
-    "remotes": true,
-    "stashes": true,
-    "tags": true,
-    "worktrees": true,
-    "contributors": true,
-    "fileHistory": true,
-    "repositories": true,
-    "searchAndCompare": false,
-    "launchpad": false
-  },
-  "biome.suggestInstallingGlobally": false,
+  "workbench.editor.editorActionsLocation": "hidden",
+  "security.workspace.trust.untrustedFiles": "open",
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -60,9 +49,6 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.formatOnSave": true,
-  "workbench.editor.editorActionsLocation": "hidden",
-  "files.exclude": {
-    "**/dist/**/*": true
-  }
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "tailwindCSS.classFunctions": ["cva", "cx", "cn"]
 }
