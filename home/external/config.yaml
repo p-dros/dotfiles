@@ -218,7 +218,7 @@ terminal:
       - '#3e999f'
       - '#ffffff'
   customColorSchemes: []
-  font: 0xProto Nerd Font Mono
+  font: JetBrains Mono
   fontSize: 12
 ssh: {}
 clickableLinks: {}
