@@ -21,7 +21,8 @@
   "explorer.confirmDragAndDrop": false,
   // Search
   "search.exclude": {
-    "**/dist": true
+    "**/dist": true,
+    "**/target": true
   },
   // vim
   "vim.easymotion": true,
@@ -40,6 +41,7 @@
   },
   "workbench.editor.editorActionsLocation": "hidden",
   "security.workspace.trust.untrustedFiles": "open",
+  // File types
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -49,6 +51,33 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "gitlens.remotes": [
+    {
+      "regex": "ssh:\\/\\/(git@stash\\.atlassian\\.com):7997\\/(.+?)(?:\\.git)?$",
+      "type": "BitbucketServer",
+      "protocol": "https",
+      "domain": "https://stash.atlassian.com",
+      "username": "pdros"
+    }
+  ],
+  // Extensions
+  "java.autobuild.enabled": false,
+  "xml.server.vmargs": "-Xmx128M",
+  "xml.format.maxLineWidth": 0,
+  "codesnap.shutterAction": "copy",
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "tailwindCSS.classFunctions": ["cva", "cx", "cn"]
+  "diffEditor.ignoreTrimWhitespace": false,
+  "git.openRepositoryInParentFolders": "always",
+  "gitlens.ai.model": "gitkraken",
+  "gitlens.ai.gitkraken.model": "gemini:gemini-2.0-flash",
+  "mise.binPath": "/opt/homebrew/bin/mise"
 }

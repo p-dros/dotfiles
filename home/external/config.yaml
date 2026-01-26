@@ -174,27 +174,27 @@ hotkeys:
 terminal:
   searchOptions: {}
   colorScheme:
-    name: Dracula
-    foreground: '#f8f8f2'
-    background: '#1e1f29'
-    cursor: '#bbbbbb'
+    name: Atom
+    foreground: '#c5c8c6'
+    background: '#161719'
+    cursor: '#d0d0d0'
     colors:
       - '#000000'
-      - '#ff5555'
-      - '#50fa7b'
-      - '#f1fa8c'
-      - '#bd93f9'
-      - '#ff79c6'
-      - '#8be9fd'
-      - '#bbbbbb'
-      - '#555555'
-      - '#ff5555'
-      - '#50fa7b'
-      - '#f1fa8c'
-      - '#bd93f9'
-      - '#ff79c6'
-      - '#8be9fd'
-      - '#ffffff'
+      - '#fd5ff1'
+      - '#87c38a'
+      - '#ffd7b1'
+      - '#85befd'
+      - '#b9b6fc'
+      - '#85befd'
+      - '#e0e0e0'
+      - '#000000'
+      - '#fd5ff1'
+      - '#94fa36'
+      - '#f5ffa8'
+      - '#96cbfe'
+      - '#b9b6fc'
+      - '#85befd'
+      - '#e0e0e0'
   lightColorScheme:
     name: Tabby Default Light
     foreground: '#4d4d4c'
