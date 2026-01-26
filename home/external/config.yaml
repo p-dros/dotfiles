@@ -1,5 +1,4 @@
-version: 7
-profiles: []
+version: 8
 groups: []
 configSync:
   parts: {}
