@@ -19,6 +19,12 @@ bindkey "$terminfo[kcbt]" menu-select
 bindkey -M menuselect              '^I'         menu-complete
 bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
 
+# Make hidden files (starting with '.') show without explicit specification for autocomplete
+# GLOBDOTS lets files beginning with a . be matched without explicitly specifying the dot.
+# https://zsh.sourceforge.io/Intro/intro_16.html
+# https://unix.stackexchange.com/questions/308315/how-can-i-configure-zsh-completion-to-show-hidden-files-and-folders
+setopt globdots
+
 # Aliases
 alias vim='nvim'
 
