@@ -5,7 +5,7 @@
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.iconTheme": "catppuccin-mocha",
   // Editor
-  "editor.fontFamily": "'JetBrains Mono', '0xProto Nerd Font Mono', 'Geist Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "'Atlassian Mono', 'JetBrains Mono', '0xProto Nerd Font Mono', 'Geist Mono', Menlo, Monaco, 'Courier New', monospace",
   "editor.lineNumbers": "relative",
   "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.accessibilitySupport": "off",
