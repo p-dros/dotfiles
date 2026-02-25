@@ -7,7 +7,7 @@
   // Editor
   "editor.fontFamily": "'JetBrains Mono', '0xProto Nerd Font Mono', 'Geist Mono', Menlo, Monaco, 'Courier New', monospace",
   "editor.lineNumbers": "relative",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.accessibilitySupport": "off",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
@@ -37,19 +37,14 @@
   "security.promptForLocalFileProtocolHandling": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "files.associations": {
-    "*.css": "tailwindcss"
+    "*.css": "tailwindcss",
+    "*.prisma": "prisma"
   },
   "workbench.editor.editorActionsLocation": "hidden",
   "security.workspace.trust.untrustedFiles": "open",
   // File types
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
@@ -59,6 +54,9 @@
   },
   "[java]": {
     "editor.defaultFormatter": "redhat.java"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "gitlens.remotes": [
     {
@@ -70,14 +68,14 @@
     }
   ],
   // Extensions
-  "java.autobuild.enabled": false,
-  "xml.server.vmargs": "-Xmx128M",
-  "xml.format.maxLineWidth": 0,
-  "codesnap.shutterAction": "copy",
   "javascript.updateImportsOnFileMove.enabled": "always",
   "diffEditor.ignoreTrimWhitespace": false,
   "git.openRepositoryInParentFolders": "always",
-  "gitlens.ai.model": "gitkraken",
-  "gitlens.ai.gitkraken.model": "gemini:gemini-2.0-flash",
-  "mise.binPath": "/opt/homebrew/bin/mise"
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "oxc.typeAware": true,
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  }
 }

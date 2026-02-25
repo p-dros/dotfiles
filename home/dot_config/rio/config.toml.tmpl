@@ -1,0 +1,31 @@
+# It makes Rio look for the specified theme in the themes folder
+# (macos: ~/.config/rio/themes/dracula.toml)
+theme = "catppuccin-mocha"
+
+# Padding-x
+padding-x = 10
+padding-y = [2, 2]
+
+# Whenever the key binding `OpenConfigEditor` is triggered it will
+# use the value of the editor along with the rio configuration path.
+[editor]
+program = "nvm"
+
+confirm-before-quit = false
+
+[window]
+width = 800
+height = 500
+mode = "windowed"
+opacity = 0.96
+
+[title]
+content = {{`"{{ ABSOLUTE_PATH || PROGRAM }}"`}}
+
+[fonts]
+size = 14
+{{ if .isWork }}
+family = "Atlassian Mono"
+{{ else }}
+family = "0xProto Nerd Font Mono"
+{{ end }}
