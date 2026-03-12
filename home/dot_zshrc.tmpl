@@ -3,7 +3,7 @@ export ZSH="$HOME/.config/oh-my-zsh"
 ZSH_THEME=""
 
 # OMZ Plugins
-plugins=(git mise zsh-autosuggestions zsh-syntax-highlighting zsh-autocomplete)
+plugins=(git ssh-agent mise zsh-autosuggestions zsh-syntax-highlighting zsh-autocomplete)
 source $ZSH/oh-my-zsh.sh
 
 # Override default directory for zcompdump files for shell completions
@@ -30,3 +30,8 @@ alias vim='nvim'
 
 # Starship
 eval "$(starship init zsh)"
+
+{{ if .isWork -}}
+# Rovodev
+export EDITOR='nvim'
+{{- end }}
