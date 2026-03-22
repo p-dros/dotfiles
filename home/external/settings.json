@@ -1,63 +1,82 @@
 {
-  "security.workspace.trust.enabled": true,
-  // UI
-  "workbench.sideBar.location": "right",
+  // Workbench / UI
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.iconTheme": "catppuccin-mocha",
-  // Editor
-  "editor.fontFamily": "'Atlassian Mono', 'JetBrains Mono', '0xProto Nerd Font Mono', 'Geist Mono', Menlo, Monaco, 'Courier New', monospace",
-  "editor.lineNumbers": "relative",
-  "editor.defaultFormatter": "oxc.oxc-vscode",
-  "editor.accessibilitySupport": "off",
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.removeUnusedImports": "always"
-  },
-  // Terminal
-  "terminal.integrated.fontSize": 14,
-  "terminal.integrated.scrollback": 15000,
-  // Explorer
+  "workbench.sideBar.location": "right",
+  "workbench.editor.editorActionsLocation": "hidden",
+
+  // Window / Security
+  "window.nativeTabs": true,
+  "security.promptForLocalFileProtocolHandling": false,
+  "security.workspace.trust.enabled": true,
+  "security.workspace.trust.untrustedFiles": "open",
+
+  // Cursor
+  "cursor.general.globalCursorIgnoreList": [
+    "**/.env",
+    "**/.env.*",
+    "**/credentials.json",
+    "**/secrets.json",
+    "**/*.pem",
+    "**/id_rsa"
+  ],
+
+  // Explorer / Files
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.prisma": "prisma"
+  },
+
   // Search
   "search.exclude": {
     "**/dist": true,
     "**/target": true
   },
-  // vim
-  "vim.easymotion": true,
-  "vim.incsearch": true,
-  "vim.useSystemClipboard": true,
-  "vim.useCtrlKeys": true,
-  "vim.hlsearch": true,
-  "vim.leader": "<space>",
-  "vim.smartRelativeLine": true,
-  // Window
-  "window.nativeTabs": true,
-  "security.promptForLocalFileProtocolHandling": false,
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "files.associations": {
-    "*.css": "tailwindcss",
-    "*.prisma": "prisma"
+
+  // Editor
+  "editor.accessibilitySupport": "off",
+  "editor.codeActionsOnSave": {
+    "source.removeUnusedImports": "always"
   },
-  "workbench.editor.editorActionsLocation": "hidden",
-  "security.workspace.trust.untrustedFiles": "open",
-  // File types
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.fontFamily": "'Atlassian Mono', 'JetBrains Mono', '0xProto Nerd Font Mono', 'Geist Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.formatOnSave": true,
+  "editor.lineNumbers": "relative",
+
+  // Terminal
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.scrollback": 15000,
+
+  // Language behavior
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  // Language-specific formatters
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
   "[typescript]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
   },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "[java]": {
-    "editor.defaultFormatter": "redhat.java"
-  },
-  "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
+
+  // Extensions
   "gitlens.remotes": [
     {
       "regex": "ssh:\\/\\/(git@stash\\.atlassian\\.com):7997\\/(.+?)(?:\\.git)?$",
@@ -67,15 +86,16 @@
       "username": "pdros"
     }
   ],
-  // Extensions
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "diffEditor.ignoreTrimWhitespace": false,
-  "git.openRepositoryInParentFolders": "always",
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
-  },
   "oxc.typeAware": true,
-  "[toml]": {
-    "editor.defaultFormatter": "tamasfe.even-better-toml"
-  }
+  "vim.easymotion": true,
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.leader": "<space>",
+  "vim.smartRelativeLine": true,
+  "vim.useCtrlKeys": true,
+  "vim.useSystemClipboard": true,
+
+  // Misc
+  "diffEditor.ignoreTrimWhitespace": false,
+  "git.openRepositoryInParentFolders": "always"
 }
