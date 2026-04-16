@@ -52,7 +52,8 @@
   // Language behavior
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",
-
+  "java.dependency.autoRefresh": false,
+  "java.autobuild.enabled": false,
   // Language-specific formatters
   "[java]": {
     "editor.defaultFormatter": "redhat.java"
@@ -94,7 +95,7 @@
   "vim.smartRelativeLine": true,
   "vim.useCtrlKeys": true,
   "vim.useSystemClipboard": true,
-
+  "mise.binPath": "/opt/homebrew/bin/mise",
   // Misc
   "diffEditor.ignoreTrimWhitespace": false,
   "git.openRepositoryInParentFolders": "always"

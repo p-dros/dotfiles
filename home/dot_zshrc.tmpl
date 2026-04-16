@@ -19,6 +19,12 @@ bindkey "$terminfo[kcbt]" menu-select
 bindkey -M menuselect              '^I'         menu-complete
 bindkey -M menuselect "$terminfo[kcbt]" reverse-menu-complete
 
+# Disable zsh-autocomplete expansion section
+# https://github.com/marlonrichert/zsh-autocomplete/issues/759
+zstyle ':completion:*' \
+	completer  \
+	_complete _complete:-fuzzy _correct _approximate _ignored
+
 # Make hidden files (starting with '.') show without explicit specification for autocomplete
 # GLOBDOTS lets files beginning with a . be matched without explicitly specifying the dot.
 # https://zsh.sourceforge.io/Intro/intro_16.html
