@@ -11,7 +11,8 @@ source $ZSH/oh-my-zsh.sh
 # https://github.com/ohmyzsh/ohmyzsh/issues/13406
 export ZSH_COMPDUMP=$ZSH_CACHE_DIR/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}
 
-# Configure zsh-autocomplete plugin
+# ZSH-AUTOCOMPLETE PLUGIN
+
 # Make Tab and ShiftTab go to the menu
 bindkey              '^I' menu-select
 bindkey "$terminfo[kcbt]" menu-select
@@ -31,9 +32,6 @@ zstyle ':completion:*' \
 # https://unix.stackexchange.com/questions/308315/how-can-i-configure-zsh-completion-to-show-hidden-files-and-folders
 setopt globdots
 
-# Aliases
-alias vim='nvim'
-
 # Starship
 eval "$(starship init zsh)"
 
@@ -41,3 +39,6 @@ eval "$(starship init zsh)"
 # Rovodev
 export EDITOR='nvim'
 {{- end }}
+
+# Aliases
+alias vim='nvim'
