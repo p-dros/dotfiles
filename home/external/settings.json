@@ -1,16 +1,14 @@
 {
   // Workbench / UI
-  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.colorTheme": "Atlassian Dark",
   "workbench.iconTheme": "catppuccin-mocha",
   "workbench.sideBar.location": "right",
   "workbench.editor.editorActionsLocation": "hidden",
-
   // Window / Security
   "window.nativeTabs": true,
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.enabled": true,
   "security.workspace.trust.untrustedFiles": "open",
-
   // Cursor
   "cursor.general.globalCursorIgnoreList": [
     "**/.env",
@@ -20,7 +18,6 @@
     "**/*.pem",
     "**/id_rsa"
   ],
-
   // Explorer / Files
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
@@ -28,13 +25,11 @@
     "*.css": "tailwindcss",
     "*.prisma": "prisma"
   },
-
   // Search
   "search.exclude": {
     "**/dist": true,
     "**/target": true
   },
-
   // Editor
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
@@ -42,13 +37,10 @@
   },
   "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.fontFamily": "'Atlassian Mono', 'JetBrains Mono', '0xProto Nerd Font Mono', 'Geist Mono', Menlo, Monaco, 'Courier New', monospace",
-  "editor.formatOnSave": true,
   "editor.lineNumbers": "relative",
-
   // Terminal
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.scrollback": 15000,
-
   // Language behavior
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",
@@ -70,13 +62,15 @@
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml"
   },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[typescript]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
   },
-
   // Extensions
   "gitlens.remotes": [
     {
@@ -96,7 +90,30 @@
   "vim.useCtrlKeys": true,
   "vim.useSystemClipboard": true,
   "mise.binPath": "/opt/homebrew/bin/mise",
+  "gitlens.ai.model": "gitkraken",
+  "gitlens.ai.gitkraken.model": "gemini:gemini-2.0-flash",
+  "prettier.printWidth": 120,
   // Misc
   "diffEditor.ignoreTrimWhitespace": false,
-  "git.openRepositoryInParentFolders": "always"
+  "git.openRepositoryInParentFolders": "always",
+  "explorer.confirmPasteNative": false,
+  "workbench.editor.centeredLayoutAutoResize": false,
+  "workbench.editor.centeredLayoutFixedWidth": true,
+  "gitlens.views.scm.grouped.views": {
+    "commits": true,
+    "branches": true,
+    "remotes": true,
+    "stashes": true,
+    "tags": true,
+    "worktrees": true,
+    "contributors": true,
+    "fileHistory": false,
+    "repositories": true,
+    "searchAndCompare": true,
+    "launchpad": false
+  },
+  "atlascode.rovodev.enabled": true,
+  "window.autoDetectColorScheme": false,
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "workbench.statusBar.visible": false
 }
