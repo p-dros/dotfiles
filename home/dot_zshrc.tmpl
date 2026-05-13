@@ -2,14 +2,14 @@ export ZSH="$HOME/.config/oh-my-zsh"
 
 ZSH_THEME=""
 
-# OMZ Plugins
-plugins=(git ssh-agent mise fzf zoxide zsh-autosuggestions zsh-syntax-highlighting zsh-autocomplete)
-source $ZSH/oh-my-zsh.sh
-
 # Override default directory for zcompdump files for shell completions
 # This should be improved in the future and moved to default cache directory
 # https://github.com/ohmyzsh/ohmyzsh/issues/13406
 export ZSH_COMPDUMP=$ZSH_CACHE_DIR/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}
+
+# OMZ Plugins
+plugins=(git ssh-agent mise fzf zoxide zsh-autosuggestions zsh-syntax-highlighting zsh-autocomplete)
+source $ZSH/oh-my-zsh.sh
 
 # ZSH-AUTOCOMPLETE PLUGIN
 
