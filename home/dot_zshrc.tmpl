@@ -32,13 +32,17 @@ zstyle ':completion:*' \
 # https://unix.stackexchange.com/questions/308315/how-can-i-configure-zsh-completion-to-show-hidden-files-and-folders
 setopt globdots
 
-# Starship
+# STARSHIP
 eval "$(starship init zsh)"
 
 {{ if .isWork -}}
-# Rovodev
+# ROVODEV
 export EDITOR='nvim'
 {{- end }}
 
-# Aliases
+# ZOXIDE
+export _REPOS="$HOME/atlassian/repos"
+export _ZO_EXCLUDE_DIRS="$HOME:$_REPOS/dc/crowd:$_REPOS/dc/jira:$_REPOS/dc/confluence"
+
+# ALIASES
 alias vim='nvim'

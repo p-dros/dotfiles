@@ -1,10 +1,13 @@
 # It makes Rio look for the specified theme in the themes folder
 # (macos: ~/.config/rio/themes/dracula.toml)
 theme = "catppuccin-mocha"
+scrollback-history-limit = 100000000
+
 {{- if .isWork }}
 use-fork = false
 working-dir = "/Users/pdros/atlassian/repos/dc"
 {{ end -}}
+
 
 # Padding-x
 padding-x = 10
