@@ -27,8 +27,7 @@
   },
   // Search
   "search.exclude": {
-    "**/dist": true,
-    "**/target": true
+    "**/dist": true
   },
   // Editor
   "editor.accessibilitySupport": "off",
@@ -115,5 +114,8 @@
   "atlascode.rovodev.enabled": true,
   "window.autoDetectColorScheme": false,
   "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
   "workbench.statusBar.visible": false
 }

@@ -1,0 +1,12 @@
+[tools]
+java = "21"
+maven = "latest"
+node = "latest"
+python = "3"
+uv = "latest"
+yarn = "4"
+
+[settings]
+idiomatic_version_file_enable_tools = ["maven", "node", "python", "java", "yarn", "npm"]
+experimental = false
+arch = "x86_64"
