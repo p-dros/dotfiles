@@ -1,0 +1,87 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+# `killall` command is used to kill application (by their name)
+# to consume the changes in defaults registry.
+
+# Retrieve an application's bundle identifier (the reverse-DNS `defaults`
+# domain) from its display name, so we don't hardcode fragile ids.
+get_bundle_id() {
+	osascript -e "id of app \"$1\""
+}
+
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Dock settings
+# ---------------------------------------------------------------------------------------------------------------------
+
+# Don’t show recent applications in Dock
+defaults write com.apple.dock show-recents -bool false
+# Set dock position
+defaults write com.apple.dock orientation -string "bottom"
+# Enable dock autohide
+defaults write com.apple.dock autohide -bool true
+
+declare -a remove_labels=(
+	Launchpad
+	Safari
+	Messages
+	Mail
+	Maps
+	Photos
+	FaceTime
+	Calendar
+	Contacts
+	Reminders
+	Notes
+	Freeform
+	TV
+	Music
+	Keynote
+	Numbers
+	Pages
+	"App Store"
+)
+
+for label in "${remove_labels[@]}"; do
+	dockutil --no-restart --remove "${label}" || true
+done
+
+killall Dock
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Finder settings
+# ---------------------------------------------------------------------------------------------------------------------
+
+# Show hidden files in the Finder
+defaults write com.apple.Finder "AppleShowAllFiles" -bool "true"
+# Allowing text selection in Quick Look/Preview in Finder by default
+defaults write com.apple.finder QLEnableTextSelection -bool true
+# When performing a search, search the current folder by default
+defaults write com.apple.finder "FXDefaultSearchScope" -string "SCcf"
+# Use list view in all Finder windows by default
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+defaults write com.apple.finder SearchRecentsSavedViewStyle -string "Nlsv"
+# Disable creation of metadata files on external volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+# Empty Trash securely by default
+defaults write com.apple.finder EmptyTrashSecurely -bool true
+# Sort folders first in Finder
+defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true"
+# Hide the "Tags" section / recent tags in the sidebar
+defaults write com.apple.finder ShowRecentTags -bool false
+# Change the behavior of the function keys to be F1, F2, etc.
+defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+
+killall Finder
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Other
+# ---------------------------------------------------------------------------------------------------------------------
+
+# Disable default hold behaviour to enable repeat keys in editors
+# The default behaviour of holding is showing special characters like polish symbols.
+# While using vim in curosr this caused issues.
+defaults write "$(get_bundle_id "Cursor")" ApplePressAndHoldEnabled -bool false
