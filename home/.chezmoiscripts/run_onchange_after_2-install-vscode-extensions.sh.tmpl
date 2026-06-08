@@ -3,25 +3,32 @@
 EXTENSIONS=(
     catppuccin.catppuccin-vsc
     catppuccin.catppuccin-vsc-icons
+
     eamodio.gitlens
+
     ms-azuretools.vscode-containers
     ms-azuretools.vscode-docker
+
+    vscodevim.vim
+    yoavbls.pretty-ts-errors
+    hverlin.mise-vscode
+
     ms-python.debugpy
     ms-python.python
     ms-python.vscode-pylance
-    tamasfe.even-better-toml
-    vscodevim.vim
-    yinfei.luahelper
-    yoavbls.pretty-ts-errors
-    hverlin.mise-vscode
-    redhat.vscode-xml
 
-    # java
     redhat.java
     vscjava.vscode-java-dependency
     vscjava.vscode-maven
     vscjava.vscode-java-debug
     vscjava.vscode-java-test
+
+    redhat.vscode-xml
+    tamasfe.even-better-toml
+
+    {{- if .isWork }}
+    sodatea.velocity
+	{{ end -}}
 )
 
 echo "Installing VS Code extensions..."

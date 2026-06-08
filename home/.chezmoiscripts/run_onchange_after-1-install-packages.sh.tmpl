@@ -14,11 +14,14 @@ CASKS=(
 	alt-tab
 	raycast
 	docker
-	font-0xproto-nerd-font
-	font-jetbrains-mono
 	cursor
 	rio
 	scroll-reverser
+
+	{{ if not .isWork }}
+	font-0xproto-nerd-font
+	font-jetbrains-mono
+	{{ end }}
 )
 
 printf '\nInitiating Homebrew update...\n'
