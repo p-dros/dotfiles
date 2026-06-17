@@ -8,7 +8,6 @@ use-fork = false
 working-dir = "/Users/pdros/atlassian/repos/dc"
 {{ end -}}
 
-
 # Padding-x
 padding-x = 10
 padding-y = [2, 2]
@@ -27,8 +26,13 @@ mode = "windowed"
 opacity = 0.96
 
 [title]
-content = {{`"{{ ABSOLUTE_PATH || PROGRAM }}"`}}
+content = "~"
 
 [fonts]
-size = 13
+size = 14
+
+{{- if .isWork }}
+family = "Atlassian Mono"
+{{- else }}
 family = "0xProto Nerd Font Mono"
+{{- end }}
