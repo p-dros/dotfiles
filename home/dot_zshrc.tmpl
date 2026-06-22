@@ -53,5 +53,6 @@ export _ZO_EXCLUDE_DIRS="$HOME:$_REPOS/dc/crowd:$_REPOS/dc/jira:$_REPOS/dc/confl
 alias vim='nvim'
 
 alias g='git'
+alias gp='git push'
 alias gco='git branch --no-color | fzf | cut -c 3- | xargs git checkout'
 alias grb='git branch --no-color | fzf -m | cut -c 3- | xargs -I {} git branch -D '{}''
