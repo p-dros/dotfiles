@@ -35,7 +35,7 @@
     "source.removeUnusedImports": "always"
   },
   "editor.defaultFormatter": "oxc.oxc-vscode",
-  "editor.fontFamily": "'Atlassian Mono', 'JetBrains Mono', '0xProto Nerd Font Mono', 'Geist Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "'JetBrainsMono Nerd Font Mono', 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
   "editor.lineNumbers": "relative",
   // Terminal
   "terminal.integrated.fontSize": 14,
