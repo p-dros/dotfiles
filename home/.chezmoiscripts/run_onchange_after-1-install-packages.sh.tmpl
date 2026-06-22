@@ -3,11 +3,11 @@
 PACKAGES=(
 	git
 	neovim
-	starship
 	curl
 	mise
-	zoxide
 	fzf
+	zoxide
+	starship
 	)
 
 CASKS=(
@@ -18,10 +18,7 @@ CASKS=(
 	rio
 	scroll-reverser
 
-	{{ if not .isWork }}
-	font-0xproto-nerd-font
-	font-jetbrains-mono
-	{{ end }}
+	font-jetbrains-mono-nerd-font
 )
 
 printf '\nInitiating Homebrew update...\n'
