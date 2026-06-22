@@ -4,7 +4,7 @@ command_timeout = 2000
 
 # Prompt layout
 format = """
-$package\
+($package\
 $c\
 $rust\
 $golang\
@@ -14,8 +14,7 @@ $php\
 $java\
 $kotlin\
 $haskell\
-$python\
-$line_break\
+$python\n)\
 $directory\
 $git_branch\
 $git_state\
@@ -96,52 +95,52 @@ stashed = "≡"
 [package]
 symbol = "󰏗"
 style = "fg:#26272A bg:#D0DBDA"
-format = '[](fg:#D0DBDA)[ $symbol( $version) ]($style)[](fg:#D0DBDA) '
+format = '[](fg:#D0DBDA)[$symbol( $version)]($style)[](fg:#D0DBDA) '
 
 [nodejs]
 symbol = ""
 style = "fg:#26272A bg:#F1DEA9"
-format = '[](fg:#F1DEA9)[ $symbol( $version) ]($style)[](fg:#F1DEA9) '
+format = '[](fg:#F1DEA9)[$symbol( $version)]($style)[](fg:#F1DEA9) '
 
 [bun]
 symbol = ""
 style = "fg:#26272A bg:#F1DEA9"
-format = '[](fg:#F1DEA9)[ $symbol( $version) ]($style)[](fg:#F1DEA9) '
+format = '[](fg:#F1DEA9)[$symbol( $version)]($style)[](fg:#F1DEA9) '
 
 [c]
 symbol = " "
 style = "fg:#EDF2F4 bg:#00599D"
-format = '[](fg:#00599D)[ $symbol( $version) ]($style)[](fg:#00599D) '
+format = '[](fg:#00599D)[$symbol( $version)]($style)[](fg:#00599D) '
 
 [rust]
 symbol = ""
 style = "fg:#EDF2F4 bg:#C33C00"
-format = '[](fg:#C33C00)[ $symbol( $version) ]($style)[](fg:#C33C00) '
+format = '[](fg:#C33C00)[$symbol( $version)]($style)[](fg:#C33C00) '
 
 [golang]
 symbol = ""
 style = "fg:#26272A bg:#7FD5EA"
-format = '[](fg:#7FD5EA)[ $symbol( $version) ]($style)[](fg:#7FD5EA) '
+format = '[](fg:#7FD5EA)[$symbol( $version)]($style)[](fg:#7FD5EA) '
 
 [php]
 symbol = ""
 style = "fg:#EDF2F4 bg:#777BB4"
-format = '[](fg:#777BB4)[ $symbol( $version) ]($style)[](fg:#777BB4) '
+format = '[](fg:#777BB4)[$symbol( $version)]($style)[](fg:#777BB4) '
 
 [java]
 symbol = ""
 style = "fg:#EDF2F4 bg:#861215"
-format = '[](fg:#861215)[ $symbol( $version) ]($style)[](fg:#861215) '
+format = '[](fg:#861215)[$symbol( $version)]($style)[](fg:#861215) '
 
 [kotlin]
 symbol = ""
 style = "fg:#EDF2F4 bg:#7F52FF"
-format = '[](fg:#7F52FF)[ $symbol( $version) ]($style)[](fg:#7F52FF) '
+format = '[](fg:#7F52FF)[$symbol( $version)]($style)[](fg:#7F52FF) '
 
 [haskell]
 symbol = ""
 style = "fg:#EDF2F4 bg:#5D4F85"
-format = '[](fg:#5D4F85)[ $symbol( $version) ]($style)[](fg:#5D4F85) '
+format = '[](fg:#5D4F85)[$symbol( $version)]($style)[](fg:#5D4F85) '
 
 [python]
 symbol = ""
