@@ -64,7 +64,7 @@ format = '[ $user]($style)'
 
 [directory]
 style = "bg:peach fg:crust"
-format = "[ $path ]($style)"
+format = "[$path ]($style)"
 truncation_length = 3
 
 [directory.substitutions]
@@ -81,7 +81,7 @@ format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 
 [git_status]
 style = "bg:yellow"
-format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
+format = '[[($all_status$ahead_behind)](fg:crust bg:yellow)]($style)'
 
 [nodejs]
 symbol = ""
