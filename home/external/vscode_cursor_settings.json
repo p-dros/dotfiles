@@ -1,6 +1,4 @@
 {
-  // Workbench / UI
-  "workbench.colorTheme": "Atlassian Dark",
   "workbench.iconTheme": "catppuccin-mocha",
   "workbench.sideBar.location": "right",
   "workbench.editor.editorActionsLocation": "hidden",
