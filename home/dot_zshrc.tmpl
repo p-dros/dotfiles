@@ -8,7 +8,7 @@ ZSH_THEME=""
 export ZSH_COMPDUMP=$ZSH_CACHE_DIR/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}
 
 # OMZ Plugins
-plugins=(git ssh-agent mise fzf zoxide zsh-autosuggestions zsh-syntax-highlighting zsh-autocomplete)
+plugins=(starship ssh-agent mise fzf zoxide zsh-autosuggestions zsh-syntax-highlighting zsh-autocomplete)
 source $ZSH/oh-my-zsh.sh
 
 # ZSH-AUTOCOMPLETE PLUGIN
@@ -32,8 +32,13 @@ zstyle ':completion:*' \
 # https://unix.stackexchange.com/questions/308315/how-can-i-configure-zsh-completion-to-show-hidden-files-and-folders
 setopt globdots
 
-# STARSHIP
-eval "$(starship init zsh)"
+# FZF
+export FZF_DEFAULT_OPTS=$'--highlight-line
+  --bind tab:toggle
+  --color=fg:#cad3f5,bg:#24273a,hl:#ed8796,fg+:#cad3f5,bg+:#363a4f
+  --color=hl+:#ed8796,info:#c6a0f6,prompt:#c6a0f6,pointer:#f4dbd6
+  --color=marker:#f7e6e2,spinner:#f4dbd6,header:#ed8796,border:#5b6078
+  --color=gutter:#363a4f'
 
 {{ if .isWork -}}
 # ROVODEV
@@ -46,3 +51,7 @@ export _ZO_EXCLUDE_DIRS="$HOME:$_REPOS/dc/crowd:$_REPOS/dc/jira:$_REPOS/dc/confl
 
 # ALIASES
 alias vim='nvim'
+
+alias g='git'
+alias gco='git branch --no-color | fzf | cut -c 3- | xargs git checkout'
+alias grb='git branch --no-color | fzf -m | cut -c 3- | xargs -I {} git branch -D '{}''
