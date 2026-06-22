@@ -19,6 +19,8 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
+$cmd_duration\
+$fill\
 $line_break\
 $character"""
 
@@ -168,13 +170,9 @@ vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
-style = "fg:#26272A bg:#F4FBFF"
-format = '[](fg:#F4FBFF)[⏱ $duration]($style)[](fg:#F4FBFF) '
-
-[time]
-disabled = false
-style = "fg:#EDF2F4 bg:#474D5C"
-format = '[](fg:#474D5C)[$time]($style)[](fg:#474D5C) '
+style = "bright-yellow"
+format = '[ $duration]($style) '
+min_time = 2_000
 
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"
