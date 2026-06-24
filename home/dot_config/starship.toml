@@ -10,11 +10,10 @@ $rust\
 $golang\
 $nodejs\
 $bun\
-$php\
 $java\
-$kotlin\
-$haskell\
-$python\n)\
+$maven\
+$python\
+\n)\
 $directory\
 $git_branch\
 $git_state\
@@ -24,7 +23,7 @@ $fill\
 $line_break\
 $character"""
 
-palette = 'catppuccin_macchiato'
+palette = 'default'
 
 [fill]
 symbol = " "
@@ -75,7 +74,7 @@ truncation_length = 3
 
 [git_branch]
 symbol = ""
-style = "bright-black"
+style = "bright_black"
 format = '[on $symbol $branch ]($style)'
 
 [git_state]
@@ -99,69 +98,53 @@ diverged = "${ahead_count}${behind_count}"
 
 [package]
 symbol = "󰏗"
-style = "fg:#26272A bg:#D0DBDA"
-format = '[](fg:#D0DBDA)[$symbol( $version)]($style)[](fg:#D0DBDA) '
+style = "fg:package_fg bg:package_bg"
+format = '[](fg:package_bg)[$symbol( $version)]($style)[](fg:package_bg) '
 
 [nodejs]
-symbol = ""
-style = "fg:#26272A bg:#F1DEA9"
-format = '[](fg:#F1DEA9)[$symbol( $version)]($style)[](fg:#F1DEA9) '
+symbol = ""
+style = "fg:nodejs_fg bg:nodejs_bg"
+format = '[](fg:nodejs_bg)[$symbol( $version)]($style)[](fg:nodejs_bg) '
 
 [bun]
 symbol = ""
-style = "fg:#26272A bg:#F1DEA9"
-format = '[](fg:#F1DEA9)[$symbol( $version)]($style)[](fg:#F1DEA9) '
+style = "fg:bun_fg bg:bun_bg"
+format = '[](fg:bun_bg)[$symbol( $version)]($style)[](fg:bun_bg) '
 
 [c]
-symbol = " "
-style = "fg:#EDF2F4 bg:#00599D"
-format = '[](fg:#00599D)[$symbol( $version)]($style)[](fg:#00599D) '
+symbol = ""
+style = "fg:c_fg bg:c_bg"
+format = '[](fg:c_bg)[$symbol( $version)]($style)[](fg:c_bg) '
 
 [rust]
 symbol = ""
-style = "fg:#EDF2F4 bg:#C33C00"
-format = '[](fg:#C33C00)[$symbol( $version)]($style)[](fg:#C33C00) '
+style = "fg:rust_fg bg:rust_bg"
+format = '[](fg:rust_bg)[$symbol( $version)]($style)[](fg:rust_bg) '
 
 [golang]
 symbol = ""
-style = "fg:#26272A bg:#7FD5EA"
-format = '[](fg:#7FD5EA)[$symbol( $version)]($style)[](fg:#7FD5EA) '
-
-[php]
-symbol = ""
-style = "fg:#EDF2F4 bg:#777BB4"
-format = '[](fg:#777BB4)[$symbol( $version)]($style)[](fg:#777BB4) '
+style = "fg:golang_fg bg:golang_bg"
+format = '[](fg:golang_bg)[$symbol( $version)]($style)[](fg:golang_bg) '
 
 [java]
 symbol = ""
-style = "fg:#EDF2F4 bg:#861215"
-format = '[](fg:#861215)[$symbol( $version)]($style)[](fg:#861215) '
+style = "fg:java_fg bg:java_bg"
+format = '[](fg:java_bg)[$symbol( $version)]($style)[](fg:java_bg) '
+
+[maven]
+symbol = ""
+style = "fg:maven_fg bg:maven_bg"
+format = '[](fg:maven_bg)[$symbol( $version)]($style)[](fg:maven_bg) '
 
 [kotlin]
 symbol = ""
-style = "fg:#EDF2F4 bg:#7F52FF"
-format = '[](fg:#7F52FF)[$symbol( $version)]($style)[](fg:#7F52FF) '
-
-[haskell]
-symbol = ""
-style = "fg:#EDF2F4 bg:#5D4F85"
-format = '[](fg:#5D4F85)[$symbol( $version)]($style)[](fg:#5D4F85) '
+style = "fg:kotlin_fg bg:kotlin_bg"
+format = '[](fg:kotlin_bg)[$symbol( $version)]($style)[](fg:kotlin_bg) '
 
 [python]
 symbol = ""
-style = "fg:#26272A bg:#F5CB5C"
-format = '[](fg:#F5CB5C)[ $symbol( $version)(\(#$virtualenv\)) ]($style)[](fg:#F5CB5C) '
-
-[docker_context]
-symbol = ""
-style = "bg:sapphire"
-format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
-
-[conda]
-symbol = ""
-style = "fg:#26272A bg:#3EB049"
-format = '[](fg:#3EB049)[$symbol$environment]($style)[](fg:#3EB049) '
-ignore_base = false
+style = "fg:python_fg bg:python_bg"
+format = '[](fg:python_bg)[ $symbol( $version)(\(#$virtualenv\)) ]($style)[](fg:python_bg) '
 
 [character]
 disabled = false
@@ -177,30 +160,34 @@ style = "bright-yellow"
 format = '[ $duration]($style) '
 min_time = 2_000
 
-[palettes.catppuccin_macchiato]
-rosewater = "#f4dbd6"
-flamingo = "#f0c6c6"
-pink = "#f5bde6"
-mauve = "#c6a0f6"
+[palettes.default]
 red = "#ed8796"
-maroon = "#ee99a0"
-peach = "#f5a97f"
 yellow = "#eed49f"
 green = "#a6da95"
-teal = "#8bd5ca"
-sky = "#91d7e3"
 sapphire = "#7dc4e4"
 blue = "#8aadf4"
 lavender = "#b7bdf8"
-text = "#cad3f5"
-subtext1 = "#b8c0e0"
-subtext0 = "#a5adcb"
-overlay2 = "#939ab7"
-overlay1 = "#8087a2"
-overlay0 = "#6e738d"
-surface2 = "#5b6078"
-surface1 = "#494d64"
-surface0 = "#363a4f"
-base = "#24273a"
-mantle = "#1e2030"
 crust = "#181926"
+bright_black = "#808080"
+
+# Language/tool module colors
+package_fg = "#26272A"
+package_bg = "#D0DBDA"
+nodejs_fg = "#84ba64"
+nodejs_bg = "#333333"
+bun_fg = "#26272A"
+bun_bg = "#F1DEA9"
+c_fg = "#EDF2F4"
+c_bg = "#00599D"
+rust_fg = "#EDF2F4"
+rust_bg = "#C33C00"
+golang_fg = "#26272A"
+golang_bg = "#7FD5EA"
+java_fg = "#EDF2F4"
+java_bg = "#cc7700"
+maven_fg = "#EDF2F4"
+maven_bg = "#861215"
+kotlin_fg = "#EDF2F4"
+kotlin_bg = "#7F52FF"
+python_fg = "#26272A"
+python_bg = "#F5CB5C"
