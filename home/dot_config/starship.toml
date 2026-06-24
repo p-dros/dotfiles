@@ -84,15 +84,18 @@ cherry_pick = '[CHERRY PICKING]($style)'
 style = "218"
 
 [git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed) ]($style)"
+format = "[[($conflicted$untracked$modified$staged$renamed$deleted$stashed)](218)($ahead_behind)]($style)"
 style = "cyan"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
-stashed = "≡"
+conflicted = ""
+untracked = ""
+modified = ""
+staged = ""
+renamed = ""
+deleted = ""
+stashed = ""
+ahead = "${count}"
+behind = "${count}"
+diverged = "${ahead_count}${behind_count}"
 
 [package]
 symbol = "󰏗"
