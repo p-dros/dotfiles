@@ -78,12 +78,12 @@ style = "bright_black"
 format = '[ on $symbol $branch]($style)'
 
 [git_state]
-format = '[ \($state( $progress_current/$progress_total)\)]($style)'
+format = '([ \($state( $progress_current/$progress_total)\)]($style))'
 cherry_pick = 'CHERRY PICKING'
 style = "pink"
 
 [git_status]
-format = "[ [($conflicted$untracked$modified$staged$renamed$deleted$stashed )](pink)($ahead_behind)]($style)"
+format = "([ [($conflicted$untracked$modified$staged$renamed$deleted$stashed )](pink)($ahead_behind)]($style))"
 style = "cyan"
 conflicted = ""
 untracked = ""
@@ -157,7 +157,7 @@ vimcmd_visual_symbol = '[❮](bold yellow)'
 
 [cmd_duration]
 style = "yellow"
-format = '[  $duration]($style) '
+format = '[ $duration]($style) '
 min_time = 2_000
 
 [palettes.default]
