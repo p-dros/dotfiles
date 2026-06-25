@@ -83,7 +83,7 @@ cherry_pick = 'CHERRY PICKING'
 style = "pink"
 
 [git_status]
-format = "[ [($conflicted$untracked$modified$staged$renamed$deleted$stashed)](pink)($ahead_behind)]($style)"
+format = "[ [($conflicted$untracked$modified$staged$renamed$deleted$stashed )](pink)($ahead_behind)]($style)"
 style = "cyan"
 conflicted = ""
 untracked = ""
