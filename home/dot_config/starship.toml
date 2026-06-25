@@ -78,8 +78,8 @@ style = "bright_black"
 format = '[ on $symbol $branch]($style)'
 
 [git_state]
-format = '[ \($state( $progress_current/$progress_total)\)]($style) '
-cherry_pick = '[ CHERRY PICKING]($style)'
+format = '[ \($state( $progress_current/$progress_total)\)]($style)'
+cherry_pick = 'CHERRY PICKING'
 style = "pink"
 
 [git_status]
@@ -184,7 +184,7 @@ rust_fg = "#EDF2F4"
 rust_bg = "#C33C00"
 golang_fg = "#26272A"
 golang_bg = "#7FD5EA"
-java_fg = "#EDF2F4"
+java_fg = "#ffffff"
 java_bg = "#cc7700"
 maven_fg = "#EDF2F4"
 maven_bg = "#861215"
