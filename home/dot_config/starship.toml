@@ -157,7 +157,7 @@ vimcmd_visual_symbol = '[❮](bold yellow)'
 
 [cmd_duration]
 style = "yellow"
-format = '[ $duration]($style) '
+format = '[  $duration]($style) '
 min_time = 2_000
 
 [palettes.default]
