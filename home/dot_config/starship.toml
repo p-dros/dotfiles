@@ -144,7 +144,7 @@ format = '[](fg:kotlin_bg)[$symbol( $version)]($style)[](fg:kotlin_bg) '
 [python]
 symbol = ""
 style = "fg:python_fg bg:python_bg"
-format = '[](fg:python_bg)[ $symbol( $version)(\(#$virtualenv\))]($style)[](fg:python_bg) '
+format = '[](fg:python_bg)[$symbol( $version)(\(#$virtualenv\))]($style)[](fg:python_bg) '
 
 [character]
 disabled = false
