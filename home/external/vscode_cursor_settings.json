@@ -2,6 +2,11 @@
   "workbench.iconTheme": "catppuccin-mocha",
   "workbench.sideBar.location": "right",
   "workbench.editor.editorActionsLocation": "hidden",
+  "workbench.editor.centeredLayoutFixedWidth": true,
+  "workbench.editorAssociations": {
+    // Explcitily set default editor for git-rebase-todo as gitlens overrides it
+    "git-rebase-todo": "default"
+  },
   // Window / Security
   "window.nativeTabs": true,
   "security.promptForLocalFileProtocolHandling": false,
@@ -46,6 +51,9 @@
   // Language-specific formatters
   "[java]": {
     "editor.defaultFormatter": "redhat.java"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -94,8 +102,6 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "git.openRepositoryInParentFolders": "always",
   "explorer.confirmPasteNative": false,
-  "workbench.editor.centeredLayoutAutoResize": false,
-  "workbench.editor.centeredLayoutFixedWidth": true,
   "gitlens.views.scm.grouped.views": {
     "commits": true,
     "branches": true,
