@@ -1,3 +1,4 @@
+#============== OMZ CORE CONFIG ==============
 export ZSH="$HOME/.config/oh-my-zsh"
 
 ZSH_THEME=""
@@ -8,10 +9,19 @@ ZSH_THEME=""
 export ZSH_COMPDUMP=$ZSH_CACHE_DIR/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}
 
 # OMZ Plugins
-plugins=(starship ssh-agent mise zoxide zsh-autosuggestions zsh-syntax-highlighting zsh-autocomplete fzf)
+plugins=(
+    starship
+    ssh-agent
+    mise
+    zoxide
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    zsh-autocomplete
+    fzf
+)
 source $ZSH/oh-my-zsh.sh
 
-# ZSH-AUTOCOMPLETE PLUGIN
+#============== ZSH-AUTOCOMPLETE PLUGIN ==============
 
 # Make Tab and ShiftTab go to the menu
 bindkey              '^I' menu-select
@@ -32,7 +42,7 @@ zstyle ':completion:*' \
 # https://unix.stackexchange.com/questions/308315/how-can-i-configure-zsh-completion-to-show-hidden-files-and-folders
 setopt globdots
 
-# FZF
+#============== FZF ==============
 export FZF_DEFAULT_OPTS=$'--highlight-line
   --bind tab:toggle
   --color=fg:#cad3f5,bg:#24273a,hl:#ed8796,fg+:#cad3f5,bg+:#363a4f
@@ -45,11 +55,11 @@ export FZF_DEFAULT_OPTS=$'--highlight-line
 export EDITOR='nvim'
 {{- end }}
 
-# ZOXIDE
+#============== ZOXIDE ==============
 export _REPOS="$HOME/atlassian/repos"
 export _ZO_EXCLUDE_DIRS="$HOME:$_REPOS/dc/crowd:$_REPOS/dc/jira:$_REPOS/dc/confluence"
 
-# ALIASES
+#============== ALIASES ==============
 alias vim='nvim'
 
 # COOL COMMANDS
@@ -57,6 +67,8 @@ alias g='git'
 
 # push the current branch
 alias gp='git push'
+
+#============== FZF GIT COMMANDS ==============
 
 # fuzzy-pick a branch and check it out
 alias gco='git branch --no-color | fzf | cut -c 3- | xargs git checkout'
