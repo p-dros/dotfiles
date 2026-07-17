@@ -50,11 +50,6 @@ export FZF_DEFAULT_OPTS=$'--highlight-line
   --color=marker:#f7e6e2,spinner:#f4dbd6,header:#ed8796,border:#5b6078
   --color=gutter:#363a4f'
 
-{{ if .isWork -}}
-# ROVODEV
-export EDITOR='nvim'
-{{- end }}
-
 #============== ZOXIDE ==============
 export _REPOS="$HOME/atlassian/repos"
 export _ZO_EXCLUDE_DIRS="$HOME:$_REPOS/dc/crowd:$_REPOS/dc/jira:$_REPOS/dc/confluence"
@@ -68,13 +63,56 @@ alias g='git'
 # push the current branch
 alias gp='git push'
 
-#============== FZF GIT COMMANDS ==============
+#============== UTILITY COMMANDS ==============
 
 # fuzzy-pick a branch and check it out
-alias gco='git branch --no-color | fzf | cut -c 3- | xargs git checkout'
+gco() {
+  git branch |
+    fzf --prompt='checkout branch> ' |
+    cut -c 3- |
+    xargs git checkout
+}
 
 # fuzzy-pick (multi-select with tab) one or more branches and force-delete them
-alias grb='git branch --no-color | fzf -m | cut -c 3- | xargs -I {} git branch -D '{}''
+grb() {
+  git branch |
+    fzf -m --prompt='delete branch(es)> ' |
+    cut -c 3- |
+    xargs -I {} git branch -D {}
+}
 
 # fuzzy-pick a branch and copy its name to the clipboard (newline stripped)
-alias gcb='git branch --no-color | fzf  | cut -c 3- | tr -d "\n" | pbcopy'
+gcb() {
+  git branch |
+    fzf --prompt='copy branch name> ' |
+    cut -c 3- |
+    tr -d "\n" |
+    pbcopy
+}
+
+# fuzzy-pick mise tools and uninstall
+mrt() {
+  local selected
+
+  selected=$(
+    mise ls --installed | \
+      awk '{print $1"@"$2}' | \
+      fzf --multi \
+        --prompt="mise remove tools> " \
+  )
+
+  [[ -z "$selected" ]] && return 0
+
+  echo "$selected" | while read -r tool; do
+    if mise uninstall "$tool"; then
+      echo "✓ Uninstalled: $tool"
+    else
+      echo "✗ Failed: $tool"
+    fi
+  done
+}
+
+{{ if .isWork -}}
+# ROVODEV
+export EDITOR='nvim'
+{{- end }}
