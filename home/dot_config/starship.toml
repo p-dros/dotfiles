@@ -10,6 +10,9 @@ $rust\
 $golang\
 $nodejs\
 $bun\
+${custom.npm}\
+${custom.yarn}\
+${custom.pnpm}\
 $java\
 $maven\
 $python\
@@ -146,6 +149,27 @@ symbol = ""
 style = "fg:python_fg bg:python_bg"
 format = '[](fg:python_bg)[$symbol( $version)(\(#$virtualenv\))]($style)[](fg:python_bg) '
 
+[custom.npm]
+detect_files = ["package-lock.json"]
+command = "npm --version"
+symbol = ""
+style = "fg:npm_fg bg:npm_bg"
+format = '[](fg:npm_bg)[$symbol( $output)]($style)[](fg:npm_bg) '
+
+[custom.yarn]
+detect_files = ["yarn.lock"]
+command = "yarn --version"
+symbol = ""
+style = "fg:yarn_fg bg:yarn_bg"
+format = '[](fg:yarn_bg)[$symbol( $output)]($style)[](fg:yarn_bg) '
+
+[custom.pnpm]
+detect_files = ["pnpm-lock.yaml"]
+command = "pnpm --version"
+symbol = ""
+style = "fg:pnpm_fg bg:pnpm_bg"
+format = '[](fg:pnpm_bg)[$symbol( $output)]($style)[](fg:pnpm_bg) '
+
 [character]
 disabled = false
 success_symbol = '[❯](bold green)'
@@ -192,3 +216,9 @@ kotlin_fg = "#EDF2F4"
 kotlin_bg = "#7F52FF"
 python_fg = "#26272A"
 python_bg = "#F5CB5C"
+npm_fg = "#EDF2F4"
+npm_bg = "#CB3837"
+yarn_fg = "#FFFFFF"
+yarn_bg = "#2C8EBB"
+pnpm_fg = "#26272A"
+pnpm_bg = "#F69220"
