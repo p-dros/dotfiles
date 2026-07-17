@@ -34,9 +34,6 @@
   },
   // Editor
   "editor.accessibilitySupport": "off",
-  "editor.codeActionsOnSave": {
-    "source.removeUnusedImports": "always"
-  },
   "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.fontFamily": "'JetBrainsMono Nerd Font Mono', 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
   "editor.lineNumbers": "relative",
@@ -118,8 +115,5 @@
   "atlascode.rovodev.enabled": true,
   "window.autoDetectColorScheme": false,
   "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
-  "[css]": {
-    "editor.defaultFormatter": "vscode.css-language-features"
-  },
   "workbench.statusBar.visible": false
 }
