@@ -50,10 +50,10 @@
     "editor.defaultFormatter": "redhat.java"
   },
   "[css]": {
-    "editor.defaultFormatter": "vscode.css-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
@@ -112,8 +112,6 @@
     "searchAndCompare": true,
     "launchpad": false
   },
-  "atlascode.rovodev.enabled": true,
   "window.autoDetectColorScheme": false,
   "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
-  "workbench.statusBar.visible": false
 }
