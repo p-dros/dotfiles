@@ -1,10 +1,14 @@
 [tools]
-java = "21"
-maven = "latest"
-node = "latest"
+yarn = "latest"
 python = "3"
 uv = "latest"
-yarn = "4"
+maven = "latest"
+{{- if .isWork }}
+java = "21"
+node = "24"
+{{- else }}
+node = "latest"
+{{- end }}
 
 [settings]
 idiomatic_version_file_enable_tools = ["maven", "node", "python", "java", "yarn", "npm"]
