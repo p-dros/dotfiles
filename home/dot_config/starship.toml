@@ -9,10 +9,10 @@ $c\
 $rust\
 $golang\
 $nodejs\
-$bun\
 ${custom.npm}\
 ${custom.yarn}\
 ${custom.pnpm}\
+$bun\
 $java\
 $maven\
 $python\
