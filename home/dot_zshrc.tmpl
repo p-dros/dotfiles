@@ -3,12 +3,6 @@ export ZSH="$HOME/.config/oh-my-zsh"
 
 ZSH_THEME=""
 
-# Override default directory for zcompdump files for shell completions
-# This should be improved in the future and moved to default cache directory
-# https://github.com/ohmyzsh/ohmyzsh/issues/13406
-export ZSH_COMPDUMP=$ZSH_CACHE_DIR/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}
-
-# OMZ Plugins
 plugins=(
     starship
     ssh-agent
@@ -19,7 +13,13 @@ plugins=(
     zsh-autocomplete
     fzf
 )
+
 source $ZSH/oh-my-zsh.sh
+
+# Override default directory for zcompdump files for shell completions
+# This should be improved in the future and moved to default cache directory
+# https://github.com/ohmyzsh/ohmyzsh/issues/13406
+export ZSH_COMPDUMP=$ZSH_CACHE_DIR/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}
 
 #============== ZSH-AUTOCOMPLETE PLUGIN ==============
 
@@ -43,6 +43,7 @@ zstyle ':completion:*' \
 setopt globdots
 
 #============== FZF ==============
+
 export FZF_DEFAULT_OPTS=$'--highlight-line
   --bind tab:toggle
   --color=fg:#cad3f5,bg:#24273a,hl:#ed8796,fg+:#cad3f5,bg+:#363a4f
@@ -51,16 +52,14 @@ export FZF_DEFAULT_OPTS=$'--highlight-line
   --color=gutter:#363a4f'
 
 #============== ZOXIDE ==============
+
 export _REPOS="$HOME/atlassian/repos"
 export _ZO_EXCLUDE_DIRS="$HOME:$_REPOS/dc/crowd:$_REPOS/dc/jira:$_REPOS/dc/confluence"
 
 #============== ALIASES ==============
+
 alias vim='nvim'
-
-# COOL COMMANDS
 alias g='git'
-
-# push the current branch
 alias gp='git push'
 
 #============== UTILITY COMMANDS ==============
