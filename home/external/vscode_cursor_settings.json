@@ -83,7 +83,21 @@
       "username": "pdros"
     }
   ],
-  "oxc.typeAware": true,
+  "gitlens.hovers.avatars": false,
+  "gitlens.partners": {
+    "liveshare": { "enabled": false }
+  },
+  "gitlens.currentLine.format": "${author, }${agoOrDate}${' via 'pullRequest}${ • message|50?}",
+  "gitlens.hovers.detailsMarkdownFormat": "__${author}__${signature} &nbsp;$(history) ${authorDate}${' via  'pullRequest} ${message}\n\n${commands}",
+  "gitlens.mode.statusBar.enabled": false,
+  // The ${commands} row in the hover is hardcoded, so each unwanted link can only be
+  // removed by disabling the feature behind it: ai.enabled drops Explain,
+  // hovers.pullRequests the PR link, integrations the Connect prompt,
+  // plusFeatures the Commit Graph icon.
+  "gitlens.ai.enabled": false,
+  "gitlens.hovers.pullRequests.enabled": false,
+  "gitlens.integrations.enabled": false,
+  "gitlens.plusFeatures.enabled": false,
   "vim.easymotion": true,
   "vim.hlsearch": true,
   "vim.incsearch": true,
@@ -92,26 +106,11 @@
   "vim.useCtrlKeys": true,
   "vim.useSystemClipboard": true,
   "mise.binPath": "/opt/homebrew/bin/mise",
-  "gitlens.ai.model": "gitkraken",
-  "gitlens.ai.gitkraken.model": "gemini:gemini-2.0-flash",
   "prettier.printWidth": 120,
   // Misc
   "diffEditor.ignoreTrimWhitespace": false,
   "git.openRepositoryInParentFolders": "always",
   "explorer.confirmPasteNative": false,
-  "gitlens.views.scm.grouped.views": {
-    "commits": true,
-    "branches": true,
-    "remotes": true,
-    "stashes": true,
-    "tags": true,
-    "worktrees": true,
-    "contributors": true,
-    "fileHistory": false,
-    "repositories": true,
-    "searchAndCompare": true,
-    "launchpad": false
-  },
   "window.autoDetectColorScheme": false,
   "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
 }
