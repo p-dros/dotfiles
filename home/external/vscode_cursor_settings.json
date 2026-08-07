@@ -92,10 +92,8 @@
   "gitlens.mode.statusBar.enabled": false,
   // The ${commands} row in the hover is hardcoded, so each unwanted link can only be
   // removed by disabling the feature behind it: ai.enabled drops Explain,
-  // hovers.pullRequests the PR link, integrations the Connect prompt,
-  // plusFeatures the Commit Graph icon.
+  // integrations the Connect prompt, plusFeatures the Commit Graph icon.
   "gitlens.ai.enabled": false,
-  "gitlens.hovers.pullRequests.enabled": false,
   "gitlens.integrations.enabled": false,
   "gitlens.plusFeatures.enabled": false,
   "vim.easymotion": true,
@@ -113,4 +111,8 @@
   "explorer.confirmPasteNative": false,
   "window.autoDetectColorScheme": false,
   "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "java.jdt.ls.java.home": "/Users/pdros/.local/share/mise/installs/java/25.0.2",
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }
