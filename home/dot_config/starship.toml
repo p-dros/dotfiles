@@ -16,6 +16,8 @@ $bun\
 $java\
 $maven\
 $python\
+$kotlin\
+$swift\
 \n)\
 $directory\
 $git_branch\
@@ -143,6 +145,13 @@ format = '[](fg:maven_bg)[$symbol( $version)]($style)[](fg:maven_bg) '
 symbol = ""
 style = "fg:kotlin_fg bg:kotlin_bg"
 format = '[](fg:kotlin_bg)[$symbol( $version)]($style)[](fg:kotlin_bg) '
+detect_files = ["build.gradle", "build.gradle.kts", "settings.gradle", "settings.gradle.kts"]
+
+[swift]
+symbol = ""
+style = "fg:swift_fg bg:swift_bg"
+format = '[](fg:swift_bg)[$symbol( $version)]($style)[](fg:swift_bg) '
+detect_files = [".swift-version", "Package.swift"]
 
 [python]
 symbol = ""
@@ -210,10 +219,12 @@ golang_fg = "#26272A"
 golang_bg = "#7FD5EA"
 java_fg = "#ffffff"
 java_bg = "#cc7700"
+swift_fg = "#FFFFFF"
+swift_bg = "#FB7E38"
 maven_fg = "#EDF2F4"
 maven_bg = "#861215"
 kotlin_fg = "#EDF2F4"
-kotlin_bg = "#7F52FF"
+kotlin_bg = "#6B57FF"
 python_fg = "#26272A"
 python_bg = "#F5CB5C"
 npm_fg = "#EDF2F4"
