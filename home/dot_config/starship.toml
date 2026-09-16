@@ -14,9 +14,10 @@ ${custom.yarn}\
 ${custom.pnpm}\
 $bun\
 $java\
-$maven\
-$python\
 $kotlin\
+$maven\
+$gradle\
+$python\
 $swift\
 \n)\
 $directory\
@@ -136,16 +137,22 @@ symbol = ""
 style = "fg:java_fg bg:java_bg"
 format = '[](fg:java_bg)[$symbol( $version)]($style)[](fg:java_bg) '
 
-[maven]
-symbol = ""
-style = "fg:maven_fg bg:maven_bg"
-format = '[](fg:maven_bg)[$symbol( $version)]($style)[](fg:maven_bg) '
-
 [kotlin]
 symbol = ""
 style = "fg:kotlin_fg bg:kotlin_bg"
 format = '[](fg:kotlin_bg)[$symbol( $version)]($style)[](fg:kotlin_bg) '
 detect_files = ["build.gradle", "build.gradle.kts", "settings.gradle", "settings.gradle.kts"]
+
+[maven]
+symbol = ""
+style = "fg:maven_fg bg:maven_bg"
+format = '[](fg:maven_bg)[$symbol( $version)]($style)[](fg:maven_bg) '
+
+[gradle]
+symbol = ""
+style = "fg:gradle_fg bg:gradle_bg"
+format = '[](fg:gradle_bg)[$symbol( $version)]($style)[](fg:gradle_bg) '
+
 
 [swift]
 symbol = ""
@@ -219,12 +226,14 @@ golang_fg = "#26272A"
 golang_bg = "#7FD5EA"
 java_fg = "#ffffff"
 java_bg = "#cc7700"
-swift_fg = "#FFFFFF"
-swift_bg = "#FB7E38"
-maven_fg = "#EDF2F4"
-maven_bg = "#861215"
 kotlin_fg = "#EDF2F4"
 kotlin_bg = "#6B57FF"
+maven_fg = "#EDF2F4"
+maven_bg = "#861215"
+gradle_fg = "#FFFFFF"
+gradle_bg = "#3AB7C2"
+swift_fg = "#FFFFFF"
+swift_bg = "#FB7E38"
 python_fg = "#26272A"
 python_bg = "#F5CB5C"
 npm_fg = "#EDF2F4"
