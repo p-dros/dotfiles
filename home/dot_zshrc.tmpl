@@ -2,6 +2,13 @@
 export ZSH="$HOME/.config/oh-my-zsh"
 
 ZSH_THEME=""
+# Keep the completion dump in the cache directory.
+# Oh My Zsh issue #13406 tracks using ZSH_CACHE_DIR for zcompdump by default;
+# currently, it instead writes the dump directly under $HOME.
+# Set these before Oh My Zsh reads them while initializing compinit.
+# https://github.com/ohmyzsh/ohmyzsh/issues/13406
+export ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/oh-my-zsh"
+export ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump-${ZSH_VERSION}"
 
 plugins=(
     starship
@@ -15,12 +22,8 @@ plugins=(
     fzf
 )
 
-source $ZSH/oh-my-zsh.sh
 
-# Override default directory for zcompdump files for shell completions
-# This should be improved in the future and moved to default cache directory
-# https://github.com/ohmyzsh/ohmyzsh/issues/13406
-export ZSH_COMPDUMP=$ZSH_CACHE_DIR/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}
+source "$ZSH/oh-my-zsh.sh"
 
 #============== ZSH-AUTOCOMPLETE PLUGIN ==============
 
