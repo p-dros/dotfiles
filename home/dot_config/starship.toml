@@ -165,6 +165,11 @@ symbol = ""
 style = "fg:python_fg bg:python_bg"
 format = '[](fg:python_bg)[$symbol( $version)(\(#$virtualenv\))]($style)[](fg:python_bg) '
 
+[ruby]
+symbol = ""
+style = "fg:ruby_fg bg:ruby_bg"
+format = '[](fg:ruby_bg)[$symbol( $version)]($style)[](fg:ruby_bg) '
+
 [custom.npm]
 detect_files = ["package-lock.json"]
 command = "npm --version"
@@ -236,6 +241,8 @@ swift_fg = "#FFFFFF"
 swift_bg = "#FB7E38"
 python_fg = "#26272A"
 python_bg = "#F5CB5C"
+ruby_fg = "#FFFFFF"
+ruby_bg = "#E2242A"
 npm_fg = "#EDF2F4"
 npm_bg = "#CB3837"
 yarn_fg = "#FFFFFF"
