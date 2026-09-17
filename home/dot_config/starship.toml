@@ -19,6 +19,7 @@ $maven\
 $gradle\
 $python\
 $swift\
+$ruby\
 \n)\
 $directory\
 $git_branch\
