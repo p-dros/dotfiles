@@ -55,10 +55,20 @@ export FZF_DEFAULT_OPTS=$'--highlight-line
   --color=marker:#f7e6e2,spinner:#f4dbd6,header:#ed8796,border:#5b6078
   --color=gutter:#363a4f'
 
-# Key bindings come from the OMZ fzf plugin (`fzf --zsh`):
-#   Ctrl+T - pick files/dirs below the current dir; Enter pastes the path(s) into the command line
-#   Alt+C  - pick a dir below the current dir; Enter cd's into it (needs Option-as-Alt in Rio)
+# Widgets come from the OMZ fzf plugin (`fzf --zsh`), which binds them to Ctrl+T / Alt+C / Ctrl+R.
+# Ctrl+T and Alt+C are moved:
+#   Ctrl+F - pick files/dirs below the current dir; Enter pastes the path(s) into the command line
+#   Ctrl+S - pick a dir below the current dir; Enter cd's into it
 #   Ctrl+R - pick a command from history; Enter puts it on the command line
+# Avoid keys that start other bindings (e.g. Ctrl+X, the prefix of Ctrl+X Ctrl+E): zsh would wait
+# KEYTIMEOUT (0.4s) for a second key before opening the picker.
+# Ctrl+S reaches zsh because flow control is off; it replaces zsh-autocomplete's history search.
+for keymap in emacs viins vicmd; do
+  bindkey -M "$keymap" -r '^T' '^[c'
+  bindkey -M "$keymap" '^F' fzf-file-widget
+  bindkey -M "$keymap" '^S' fzf-cd-widget
+done
+unset keymap
 # Without these settings Ctrl+T/Alt+C use fzf's built-in walker, which ignores .gitignore
 # (lists every target/, dist/, ...), and show no preview.
 # fd respects .gitignore; --hidden keeps dotfiles like .github/, so .git is excluded explicitly.
