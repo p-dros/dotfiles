@@ -16,6 +16,8 @@ brew "gnupg"
 # required for installing ruby
 brew "libyaml"
 brew "pkgconf"
+# terminal-based disk usage analyzer for Unix-like systems
+brew "ncdu"
 
 cask "alt-tab"
 cask "raycast"
