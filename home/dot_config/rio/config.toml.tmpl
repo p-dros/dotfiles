@@ -2,6 +2,8 @@
 # (macos: ~/.config/rio/themes/dracula.toml)
 theme = "catppuccin-mocha"
 scrollback-history-limit = 100000000
+# Left Option sends Alt (needed for fzf's Alt+C), right Option still types special characters
+option-as-alt = "left"
 
 {{- if .isWork }}
 use-fork = false

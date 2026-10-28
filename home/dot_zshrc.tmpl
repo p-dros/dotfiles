@@ -55,6 +55,19 @@ export FZF_DEFAULT_OPTS=$'--highlight-line
   --color=marker:#f7e6e2,spinner:#f4dbd6,header:#ed8796,border:#5b6078
   --color=gutter:#363a4f'
 
+# Key bindings come from the OMZ fzf plugin (`fzf --zsh`):
+#   Ctrl+T - pick files/dirs below the current dir; Enter pastes the path(s) into the command line
+#   Alt+C  - pick a dir below the current dir; Enter cd's into it (needs Option-as-Alt in Rio)
+#   Ctrl+R - pick a command from history; Enter puts it on the command line
+# Without these settings Ctrl+T/Alt+C use fzf's built-in walker, which ignores .gitignore
+# (lists every target/, dist/, ...), and show no preview.
+# fd respects .gitignore; --hidden keeps dotfiles like .github/, so .git is excluded explicitly.
+export FZF_CTRL_T_COMMAND='fd --hidden --follow --exclude .git'
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+# Preview pane: eza shows dirs as a tree, bat shows file contents (bat can't render dirs).
+export FZF_CTRL_T_OPTS="--preview '[[ -d {} ]] && eza --tree --level=2 --color=always {} || bat --style=numbers --color=always --line-range=:300 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --color=always {}'"
+
 #============== ZOXIDE ==============
 
 export _REPOS="$HOME/atlassian/repos"
