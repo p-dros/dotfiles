@@ -1,0 +1,29 @@
+brew "git"
+brew "neovim"
+brew "curl"
+brew "mise"
+brew "fzf"
+# lists paths for fzf's Ctrl+T / Alt+C, skipping anything in .gitignore (also a faster `find`)
+brew "fd"
+# directory tree in fzf's preview pane
+brew "eza"
+# syntax-highlighted file contents in fzf's preview pane (also a nicer `cat`)
+brew "bat"
+brew "zoxide"
+brew "starship"
+# required for commit signing
+brew "gnupg"
+# required for installing ruby
+brew "libyaml"
+brew "pkgconf"
+
+cask "alt-tab"
+cask "raycast"
+cask "cursor"
+# no built-in updater, so `brew bundle` upgrades it when outdated (the other apps update themselves)
+cask "rio"
+cask "scroll-reverser"
+cask "jordanbaird-ice"
+
+# plain font files with no updater, so `brew bundle` upgrades it when outdated
+cask "font-jetbrains-mono-nerd-font"
