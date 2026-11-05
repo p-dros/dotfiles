@@ -19,11 +19,21 @@ plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting
     zsh-autocomplete
+    # Loads fzf's Zsh integration through Oh My Zsh:
+    # - Enables fuzzy **<Tab> completion.
+    # - Registers ZLE (Zsh’s command-line editor) widgets for file, directory, and command-history searches.
+    # - Provides Ctrl+T, Alt+C, and Ctrl+R bindings by default.
+    # - Ctrl+T and Alt+C are rebound to Ctrl+F and Ctrl+S below.
     fzf
 )
 
 
 source "$ZSH/oh-my-zsh.sh"
+
+
+#============== VARIABLES ==============
+
+export _REPOS="$HOME/atlassian/repos"
 
 #============== ZSH-AUTOCOMPLETE PLUGIN ==============
 
@@ -57,30 +67,49 @@ export FZF_DEFAULT_OPTS=$'--highlight-line
 
 # Widgets come from the OMZ fzf plugin (`fzf --zsh`), which binds them to Ctrl+T / Alt+C / Ctrl+R.
 # Ctrl+T and Alt+C are moved:
-#   Ctrl+F - pick files/dirs below the current dir; Enter pastes the path(s) into the command line
-#   Ctrl+S - pick a dir below the current dir; Enter cd's into it
+#   Ctrl+F (formerly Ctrl+T) - pick files/dirs below the current dir; Enter pastes the path(s) into the command line
+#   Ctrl+S (formerly Alt+C) - pick a dir below the current dir; Enter cd's into it
 #   Ctrl+R - pick a command from history; Enter puts it on the command line
 # Avoid keys that start other bindings (e.g. Ctrl+X, the prefix of Ctrl+X Ctrl+E): zsh would wait
 # KEYTIMEOUT (0.4s) for a second key before opening the picker.
 # Ctrl+S reaches zsh because flow control is off; it replaces zsh-autocomplete's history search.
+
 for keymap in emacs viins vicmd; do
   bindkey -M "$keymap" -r '^T' '^[c'
   bindkey -M "$keymap" '^F' fzf-file-widget
   bindkey -M "$keymap" '^S' fzf-cd-widget
 done
 unset keymap
+
 # Without these settings Ctrl+T/Alt+C use fzf's built-in walker, which ignores .gitignore
 # (lists every target/, dist/, ...), and show no preview.
 # fd respects .gitignore; --hidden keeps dotfiles like .github/, so .git is excluded explicitly.
-export FZF_CTRL_T_COMMAND='fd --hidden --follow --exclude .git'
-export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+# fd does not descend into excluded directories. Maintain each picker's exclusions separately.
+
+FZF_CTRL_T_EXCLUDE_DIRS=(.git)
+FZF_ALT_C_EXCLUDE_DIRS=(.git target src funct-tests)
+
+FZF_CTRL_T_EXCLUDE_ARGS=()
+for dir in "${FZF_CTRL_T_EXCLUDE_DIRS[@]}"; do
+  FZF_CTRL_T_EXCLUDE_ARGS+=(--exclude "$dir")
+done
+
+FZF_ALT_C_EXCLUDE_ARGS=()
+for dir in "${FZF_ALT_C_EXCLUDE_DIRS[@]}"; do
+  FZF_ALT_C_EXCLUDE_ARGS+=(--exclude "$dir")
+done
+unset dir
+
+export FZF_CTRL_T_COMMAND="fd --hidden --follow --max-depth 4 ${FZF_CTRL_T_EXCLUDE_ARGS[*]}"
+export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --max-depth 4 ${FZF_ALT_C_EXCLUDE_ARGS[*]}"
+
 # Preview pane: eza shows dirs as a tree, bat shows file contents (bat can't render dirs).
+
 export FZF_CTRL_T_OPTS="--preview '[[ -d {} ]] && eza --tree --level=2 --color=always {} || bat --style=numbers --color=always --line-range=:300 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --color=always {}'"
 
 #============== ZOXIDE ==============
 
-export _REPOS="$HOME/atlassian/repos"
 export _ZO_EXCLUDE_DIRS="$HOME:$_REPOS/dc/crowd:$_REPOS/dc/jira:$_REPOS/dc/confluence"
 
 #============== ALIASES ==============
@@ -90,6 +119,37 @@ alias g='git'
 alias gp='git push'
 
 #============== UTILITY COMMANDS ==============
+
+# fuzzy-pick a Git repository under $_REPOS and change into it
+crepo() {
+  local repo git_metadata
+
+  repo=$(
+    fd --hidden --no-ignore --glob '.git' --prune --max-depth 5 --search-path "$_REPOS" |
+      while IFS= read -r git_metadata; do
+        print -r -- "${${git_metadata:h}#"$_REPOS"/}"
+      done |
+      fzf --height "${FZF_TMUX_HEIGHT:-40%}" \
+        --min-height '20+' \
+        --reverse \
+        --prompt='Repository> ' \
+        --preview 'git -C "$_REPOS"/{} status --short --branch'
+  )
+
+  [[ -n "$repo" ]] && cd -- "$_REPOS/$repo"
+}
+
+# Open the repository picker with Ctrl+Q.
+crepo-widget() {
+  crepo
+  zle reset-prompt
+}
+zle -N crepo-widget
+
+for keymap in emacs viins vicmd; do
+  bindkey -M "$keymap" '^Q' crepo-widget
+done
+unset keymap
 
 # fuzzy-pick a branch and check it out
 gco() {
