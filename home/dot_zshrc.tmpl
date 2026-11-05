@@ -33,7 +33,11 @@ source "$ZSH/oh-my-zsh.sh"
 
 #============== VARIABLES ==============
 
+{{ if .isWork -}}
 export _REPOS="$HOME/atlassian/repos"
+{{ else -}}
+export _REPOS="$HOME/dev/repos"
+{{ end }}
 
 #============== ZSH-AUTOCOMPLETE PLUGIN ==============
 
