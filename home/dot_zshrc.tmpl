@@ -35,9 +35,23 @@ source "$ZSH/oh-my-zsh.sh"
 
 {{ if .isWork -}}
 export _REPOS="$HOME/atlassian/repos"
+export _WORKTREES="$HOME/atlassian/worktrees"
 {{ else -}}
 export _REPOS="$HOME/dev/repos"
+export _WORKTREES="$HOME/dev/worktrees"
 {{ end }}
+
+#============== ZSH VI MODE ==============
+
+export EDITOR=nvim
+export VISUAL=nvim
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+# Bind F2 to open the command line in Vim
+bindkey '^[OQ' edit-command-line
+bindkey '^[[12~' edit-command-line
+
 
 #============== ZSH-AUTOCOMPLETE PLUGIN ==============
 
@@ -178,6 +192,126 @@ gcb() {
     cut -c 3- |
     tr -d "\n" |
     pbcopy
+}
+
+#============== GIT WORKTREES ==============
+
+# create a worktree on a new branch and cd into it: prompts for the branch name
+# (or takes it as $1), fuzzy-picks the base branch, places it in $_WORKTREES/<repo>-<random hex>
+gwa() {
+  local common_dir repo_root branch base target
+
+  common_dir=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || {
+    print -u2 'gwa: not inside a Git repository'
+    return 1
+  }
+  repo_root=${common_dir:h}
+
+  branch=$1
+  [[ -n "$branch" ]] || read -r 'branch?New branch name: '
+  [[ -n "$branch" ]] || return 1
+  if ! git check-ref-format --branch "$branch" >/dev/null 2>&1; then
+    print -u2 "gwa: invalid branch name: $branch"
+    return 1
+  fi
+  if git -C "$repo_root" show-ref --verify --quiet "refs/heads/$branch"; then
+    print -u2 "gwa: branch already exists: $branch"
+    return 1
+  fi
+
+  # order: main/master, then release/* (newest version first), then the rest (newest commit first);
+  # local and remote copies of a branch are grouped by name without the remote prefix.
+  # symrefs (origin/HEAD) print as lines without a refname and are dropped by awk
+  base=$(
+    git -C "$repo_root" for-each-ref --sort=-committerdate --color=always \
+      --format='%(if)%(symref)%(then)%(else)%(refname)%09%(refname:short)%09%(color:green)%(committerdate:relative)%(end)' \
+      refs/heads refs/remotes |
+      awk -F'\t' -v OFS='\t' '$1 ~ /^refs\// {
+        name = $1
+        sub(/^refs\/heads\//, "", name)
+        sub(/^refs\/remotes\/[^\/]+\//, "", name)
+        if (name ~ /^(main|master)$/) print 0, "", $2, $3
+        else if (name ~ /^release\//) print 1, name, $2, $3
+        else print 2, "", $2, $3
+      }' |
+      sort -s -t$'\t' -k1,1n -k2,2Vr |
+      cut -f3- |
+      fzf --height "${FZF_TMUX_HEIGHT:-40%}" \
+        --min-height '20+' \
+        --reverse \
+        --ansi \
+        --tiebreak=index \
+        --delimiter='\t' \
+        --prompt='Base branch> ' \
+        --header="New branch: $branch" \
+        --preview "git -C ${(q)repo_root} log --oneline --graph --color=always -30 {1}"
+  )
+  base=${base%%$'\t'*}
+  [[ -n "$base" ]] || return 1
+
+  mkdir -p -- "$_WORKTREES" || return 1
+  target="$_WORKTREES/${repo_root:t}-$(openssl rand -hex 3)"
+  while [[ -e "$target" ]]; do target="$_WORKTREES/${repo_root:t}-$(openssl rand -hex 3)"; done
+
+  # --no-track: don't make the new branch track its base (e.g. origin/master);
+  # push.autoSetupRemote sets the upstream to origin/<branch> on first push
+  git -C "$repo_root" worktree add --no-track -b "$branch" "$target" "$base" || return
+  cd -- "$target"
+}
+
+# fuzzy-pick (multi-select with tab) worktrees under $_WORKTREES, remove them,
+# then optionally force-delete their branches
+gwr() {
+  local -a selected branches
+  local line wt branch repo_root entry prev_pwd
+
+  selected=(${(f)"$(
+    for wt in "$_WORKTREES"/*(N/); do
+      print -r -- "${wt:t}"$'\t'"$(git -C "$wt" branch --show-current 2>/dev/null)"
+    done |
+      fzf --multi \
+        --height "${FZF_TMUX_HEIGHT:-40%}" \
+        --min-height '20+' \
+        --reverse \
+        --delimiter='\t' \
+        --prompt='Remove worktree> ' \
+        --header='Tab to select multiple' \
+        --preview 'git -C "$_WORKTREES"/{1} status --short --branch; echo; git -C "$_WORKTREES"/{1} log --oneline --color=always -15'
+  )"})
+  (( ${#selected} )) || return 0
+
+  for line in "${selected[@]}"; do
+    wt="$_WORKTREES/${line%%$'\t'*}"
+    branch=${line#*$'\t'}
+
+    if ! repo_root=$(git -C "$wt" rev-parse --path-format=absolute --git-common-dir 2>/dev/null); then
+      print "✗ Skipped: ${wt:t} (not a Git worktree; its repository may be gone)"
+      continue
+    fi
+    repo_root=${repo_root:h}
+
+    prev_pwd=$PWD
+    [[ "$PWD" == "$wt" || "$PWD" == "$wt"/* ]] && cd -- "$repo_root"
+
+    if git -C "$repo_root" worktree remove "$wt"; then
+      print "✓ Removed: ${wt:t}"
+      [[ -n "$branch" ]] && branches+=("$repo_root"$'\t'"$branch")
+    else
+      print "✗ Kept: ${wt:t} (use 'git worktree remove --force' to discard its changes)"
+      cd -- "$prev_pwd"
+    fi
+  done
+  (( ${#branches} )) || return 0
+
+  print "Branches: ${(j:, :)${branches[@]#*$'\t'}}"
+  if ! read -q '?Delete these branches too? [y/N] '; then
+    print
+    return 0
+  fi
+  print
+  for entry in "${branches[@]}"; do
+    git -C "${entry%%$'\t'*}" branch -D "${entry#*$'\t'}"
+  done
 }
 
 # fuzzy-pick mise tools and uninstall
