@@ -40,6 +40,7 @@
   // Terminal
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.scrollback": 15000,
+  "terminal.integrated.macOptionIsMeta": true,
   // Language behavior
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",

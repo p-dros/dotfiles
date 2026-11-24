@@ -196,10 +196,13 @@ gcb() {
 
 #============== GIT WORKTREES ==============
 
-# create a worktree on a new branch and cd into it: prompts for the branch name
-# (or takes it as $1), fuzzy-picks the base branch, places it in $_WORKTREES/<repo>-<random hex>
+# create a worktree in $_WORKTREES/<repo>-<random hex> and cd into it.
+# Branch comes from $1 or a picker of existing branches (local first): Enter on a branch uses it,
+# Enter with no match or Alt-Enter (Option+Enter) creates the typed name as a new branch, then fuzzy-picks its base.
+# A remote-only branch (origin/foo or just foo) gets a local branch tracking it.
 gwa() {
-  local common_dir repo_root branch base target
+  local common_dir repo_root branch base target out remote remote_ref fzf_status
+  local -a lines
 
   common_dir=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || {
     print -u2 'gwa: not inside a Git repository'
@@ -208,14 +211,85 @@ gwa() {
   repo_root=${common_dir:h}
 
   branch=$1
-  [[ -n "$branch" ]] || read -r 'branch?New branch name: '
-  [[ -n "$branch" ]] || return 1
+  if [[ -z "$branch" ]]; then
+    # local branches already checked out in a worktree are hidden (Git refuses a second checkout),
+    # and so are remote branches that have a local counterpart
+    out=$(
+      git -C "$repo_root" for-each-ref --sort=-committerdate --color=always \
+        --format='%(if)%(symref)%(then)%(else)%(refname)%09%(refname:short)%09%(worktreepath)%09%(color:green)%(committerdate:relative)%(end)' \
+        refs/heads refs/remotes |
+        awk -F'\t' -v OFS='\t' '
+          $1 ~ /^refs\/heads\// {
+            has_local[$2] = 1
+            if ($3 == "") print $2, $4
+            next
+          }
+          $1 ~ /^refs\/remotes\// {
+            name = $1
+            sub(/^refs\/remotes\/[^\/]+\//, "", name)
+            remotes[++n] = name "\t" $2 "\t" $4
+          }
+          END {
+            for (i = 1; i <= n; i++) {
+              split(remotes[i], r, "\t")
+              if (!(r[1] in has_local)) print r[2], r[3]
+            }
+          }' |
+        fzf --height "${FZF_TMUX_HEIGHT:-40%}" \
+          --min-height '20+' \
+          --reverse \
+          --ansi \
+          --tiebreak=index \
+          --delimiter='\t' \
+          --print-query \
+          --expect=alt-enter \
+          --prompt='Branch> ' \
+          --header='Enter: use selected branch (or create typed name if nothing matches) | Option+Enter: create typed name'
+    )
+    fzf_status=$?
+    (( fzf_status == 0 || fzf_status == 1 )) || return 1
+    lines=("${(@f)out}")
+    if [[ "${lines[2]}" == alt-enter || -z "${lines[3]}" ]]; then
+      branch=${lines[1]}
+    else
+      branch=${lines[3]%%$'\t'*}
+    fi
+    [[ -n "$branch" ]] || return 1
+  fi
+
+  mkdir -p -- "$_WORKTREES" || return 1
+  target="$_WORKTREES/${repo_root:t}-$(openssl rand -hex 3)"
+  while [[ -e "$target" ]]; do target="$_WORKTREES/${repo_root:t}-$(openssl rand -hex 3)"; done
+
+  if git -C "$repo_root" show-ref --verify --quiet "refs/heads/$branch"; then
+    git -C "$repo_root" worktree add "$target" "$branch" || return
+    cd -- "$target"
+    return
+  fi
+
+  if git -C "$repo_root" show-ref --verify --quiet "refs/remotes/$branch"; then
+    remote_ref=$branch
+  else
+    for remote in $(git -C "$repo_root" remote); do
+      if git -C "$repo_root" show-ref --verify --quiet "refs/remotes/$remote/$branch"; then
+        remote_ref="$remote/$branch"
+        break
+      fi
+    done
+  fi
+  if [[ -n "$remote_ref" ]]; then
+    branch=${remote_ref#*/}
+    if git -C "$repo_root" show-ref --verify --quiet "refs/heads/$branch"; then
+      git -C "$repo_root" worktree add "$target" "$branch" || return
+    else
+      git -C "$repo_root" worktree add --track -b "$branch" "$target" "$remote_ref" || return
+    fi
+    cd -- "$target"
+    return
+  fi
+
   if ! git check-ref-format --branch "$branch" >/dev/null 2>&1; then
     print -u2 "gwa: invalid branch name: $branch"
-    return 1
-  fi
-  if git -C "$repo_root" show-ref --verify --quiet "refs/heads/$branch"; then
-    print -u2 "gwa: branch already exists: $branch"
     return 1
   fi
 
@@ -249,32 +323,54 @@ gwa() {
   base=${base%%$'\t'*}
   [[ -n "$base" ]] || return 1
 
-  mkdir -p -- "$_WORKTREES" || return 1
-  target="$_WORKTREES/${repo_root:t}-$(openssl rand -hex 3)"
-  while [[ -e "$target" ]]; do target="$_WORKTREES/${repo_root:t}-$(openssl rand -hex 3)"; done
-
   # --no-track: don't make the new branch track its base (e.g. origin/master);
   # push.autoSetupRemote sets the upstream to origin/<branch> on first push
   git -C "$repo_root" worktree add --no-track -b "$branch" "$target" "$base" || return
   cd -- "$target"
 }
 
-# fuzzy-pick a worktree under $_WORKTREES and cd into it
+# fuzzy-pick a worktree and cd into it: lists every repository that owns a worktree under
+# $_WORKTREES (plus the current one), each as its root checkout followed by its worktrees
 gwc() {
-  local wt selected
+  local wt common_dir repo_root selected
+  local -aU repo_roots
+
+  common_dir=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) &&
+    repo_roots+=("${common_dir:h}")
+  for wt in "$_WORKTREES"/*(N/); do
+    common_dir=$(git -C "$wt" rev-parse --path-format=absolute --git-common-dir 2>/dev/null) &&
+      repo_roots+=("${common_dir:h}")
+  done
 
   selected=$(
-    for wt in "$_WORKTREES"/*(N/); do
-      print -r -- "${wt:t}"$'\t'"$(git -C "$wt" branch --show-current 2>/dev/null)"
+    for repo_root in "${repo_roots[@]}"; do
+      # porcelain: one block per worktree, the root checkout first; bare and prunable entries are skipped
+      git -C "$repo_root" worktree list --porcelain |
+        awk -v OFS='\t' '
+          function emit() {
+            if (path != "") {
+              label = path
+              sub(/.*\//, "", label)
+              print (n == 1 ? label " (root)" : label), branch, path
+            }
+            path = ""
+          }
+          /^worktree / { path = substr($0, 10); branch = ""; n++ }
+          /^branch / { branch = substr($0, 8); sub(/^refs\/heads\//, "", branch) }
+          /^detached/ { branch = "(detached)" }
+          /^(bare|prunable)/ { path = "" }
+          /^$/ { emit() }
+          END { emit() }'
     done |
       fzf --height "${FZF_TMUX_HEIGHT:-40%}" \
         --min-height '20+' \
         --reverse \
         --delimiter='\t' \
+        --with-nth=1,2 \
         --prompt='Worktree> '
   )
 
-  [[ -n "$selected" ]] && cd -- "$_WORKTREES/${selected%%$'\t'*}"
+  [[ -n "$selected" ]] && cd -- "${selected##*$'\t'}"
 }
 
 # fuzzy-pick (multi-select with tab) worktrees under $_WORKTREES, remove them,
