@@ -259,6 +259,24 @@ gwa() {
   cd -- "$target"
 }
 
+# fuzzy-pick a worktree under $_WORKTREES and cd into it
+gwc() {
+  local wt selected
+
+  selected=$(
+    for wt in "$_WORKTREES"/*(N/); do
+      print -r -- "${wt:t}"$'\t'"$(git -C "$wt" branch --show-current 2>/dev/null)"
+    done |
+      fzf --height "${FZF_TMUX_HEIGHT:-40%}" \
+        --min-height '20+' \
+        --reverse \
+        --delimiter='\t' \
+        --prompt='Worktree> '
+  )
+
+  [[ -n "$selected" ]] && cd -- "$_WORKTREES/${selected%%$'\t'*}"
+}
+
 # fuzzy-pick (multi-select with tab) worktrees under $_WORKTREES, remove them,
 # then optionally force-delete their branches
 gwr() {
@@ -275,8 +293,7 @@ gwr() {
         --reverse \
         --delimiter='\t' \
         --prompt='Remove worktree> ' \
-        --header='Tab to select multiple' \
-        --preview 'git -C "$_WORKTREES"/{1} status --short --branch; echo; git -C "$_WORKTREES"/{1} log --oneline --color=always -15'
+        --header='Tab to select multiple'
   )"})
   (( ${#selected} )) || return 0
 
