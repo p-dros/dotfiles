@@ -118,7 +118,7 @@ for dir in "${FZF_ALT_C_EXCLUDE_DIRS[@]}"; do
 done
 unset dir
 
-export FZF_CTRL_T_COMMAND="fd --hidden --follow --max-depth 4 ${FZF_CTRL_T_EXCLUDE_ARGS[*]}"
+export FZF_CTRL_T_COMMAND="fd --hidden --follow --max-depth 10 ${FZF_CTRL_T_EXCLUDE_ARGS[*]}"
 export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --max-depth 4 ${FZF_ALT_C_EXCLUDE_ARGS[*]}"
 
 # Preview pane: eza shows dirs as a tree, bat shows file contents (bat can't render dirs).
